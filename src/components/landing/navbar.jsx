@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect } from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from "../ui/button";
 import { motion } from "motion/react";
@@ -49,7 +48,7 @@ const Navbar = () => {
       <div className="mx-auto max-w-8xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-20 items-center justify-between rounded-full px-4 sm:px-6">
           <Link href="/" className="flex items-center gap-2 z-50">
-            <Image src="/logo.png" alt="Flux Bridge" width={44} height={44} priority className='w-25 h-25' />
+            <img src="/favicon.png" alt="Flux Bridge" width={44} height={44} priority className='w-25 h-25' />
           </Link>
 
           {/* Desktop Navigation */}

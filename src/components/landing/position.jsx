@@ -48,7 +48,7 @@ const KeyPosition = () => {
               <img
                 className="w-full max-w-[583px] h-auto md:max-w-[520px] lg:max-w-[560px] 2xl:w-[583px] 2xl:h-[524px] 2xl:absolute 2xl:top-[212px] 2xl:left-[740px]"
                 alt="Image"
-                src="https://c.animaapp.com/mfvdxb8gInTGFO/img/image.svg"
+                src="/image.png"
               />
             </div>
 
