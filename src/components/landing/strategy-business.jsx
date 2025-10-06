@@ -94,14 +94,14 @@ const StrategyBusiness = () => {
   return (
     <div className="mt-50 mb-15 z-5 flex flex-col items-center ">
       {/* Section Title */}
-      <h1 className="text-6xl bg-gradient-to-r from-[rgb(55,100,255,1)] to-white bg-clip-text font-normal text-transparent text-center pb-1">
+      <h1 className="text-6xl mb-10  bg-gradient-to-r from-[rgb(55,100,255,1)] to-white bg-clip-text font-normal text-transparent text-center pb-1">
         Strategy & Business
         <br />
         Transformation
       </h1>
 
       {/* Tabs */}
-      <div className=" flex items-center gap-55 w-[1240px] mr-0 overflow-x-auto relative ">
+      <div className=" flex justify-between items-center w-[1240px]  mr-0 overflow-x-auto relative ">
         {transformationAreas.map((area) => {
           const isActive = selectedArea === area;
           return (
@@ -109,10 +109,10 @@ const StrategyBusiness = () => {
               key={area}
               type="button"
               onClick={() => setSelectedArea(area)}
-              className={`[font-family:'Aeonik_TRIAL-Regular',Helvetica] text-lg leading-normal whitespace-nowrap transition-colors rounded-2xl p-2 cursor-pointer ${
+              className={`[font-family:'Aeonik_TRIAL-Regular',Helvetica] text-lg leading-normal whitespace-nowrap transition-colors rounded-2xl  py-4 px-13.5  cursor-pointer ${
                 isActive
-                  ? "text-[#4f76ff] h-[70px]  rounded-b-none rounded-t-3xl border-0 p-6  bg-white/10 backdrop-blur-lg"
-                  : "text-white/90 ml-2 mr-0 hover:text-white"
+                  ? "text-[#4f76ff] h-[70px]  rounded-b-none rounded-t-3xl border-0  bg-white/10 backdrop-blur-lg scrollbar-hide"
+                  : "text-white/90  hover:text-white"
               }`}
             >
               {area}
@@ -122,7 +122,7 @@ const StrategyBusiness = () => {
       </div>
 
       {/* Main Content Panel - only selected tab content */}
-      <div className="w-[1240px] h-[500px] rounded-b-3xl rounded-t-none  bg-white/10 backdrop-blur-lg p-5 flex items-start gap-6">
+      <div className="w-[1240px]  rounded-b-3xl rounded-t-none  bg-white/10 backdrop-blur-lg p-5 flex items-start gap-6">
         {/* Left: Text */}
         <div className="flex-1 flex flex-col items-start gap-6 relative p-10">
           <div className="[font-family:'Aeonik_TRIAL-Bold',Helvetica] font-bold text-white text-[46px] leading-[46px]">
