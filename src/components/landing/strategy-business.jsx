@@ -1,4 +1,5 @@
-import React from "react";
+'use client';
+import React, { useState } from "react";
 
 const transformationAreas = [
   "Business / Strategy Consulting",
@@ -26,47 +27,116 @@ const businessConsultingServices = [
 ];
 
 const StrategyBusiness = () => {
+  const [selectedArea, setSelectedArea] =useState(
+    transformationAreas[0]
+  );
+
+  const contentByArea = {
+    "Business / Strategy Consulting": {
+      titleLines: ["Business / Strategy", "Consulting"],
+      services: businessConsultingServices,
+      image:
+        "/Rectangle82.png",
+      imageAlt: "Workflow Strategy",
+    },
+    "Technology & Digital": {
+      titleLines: ["Technology &", "Digital"],
+      services: [
+        {
+          title: "Digital Transformation",
+          description: "Assessment, strategy roadmap and implementation",
+        },
+        {
+          title: "Data Analytics",
+          description: "Leveraging AI and machine learning for insights",
+        },
+        {
+          title: "Process Automation (RPACoE)",
+          description: "Driving efficiency though automation excellence",
+        },
+        {
+          title: "Technology & Devlopment",
+          description: "IT Solutions , PMO , and mobile/web applications",
+        },
+      ],
+      image:
+        "/Technology.png",
+      imageAlt: "Technology & Digital",
+    },
+    "Strategic Alliances & Startups": {
+      titleLines: ["Strategic Alliances &", "Startups"],
+      services: [
+        {
+          title: "Joint Ventures & Alliances",
+          description: "Partnership with businesses and family offices",
+        },
+        {
+          title: "Project Development",
+          description: "From concept creation to final execution",
+        },
+        {
+          title: "Start-up Support",
+          description: "Advisory, strategy, and growth enablement",
+        },
+        {
+          title: "Sustainable Growth",
+          description: "Long-term scaling and value creation initiatives",
+        },
+      ],
+      image:
+        "/Teamco.jpg",
+      imageAlt: "Alliances & Startups",
+    },
+  };
+
+  const active = contentByArea[selectedArea];
+
   return (
-    <div className="my-10 md:my-50 z-10 flex flex-col items-center gap-6 md:gap-10">
+    <div className="mt-50 mb-15 z-5 flex flex-col items-center ">
       {/* Section Title */}
-      <h1 className="text-3xl md:text-6xl bg-gradient-to-r from-[rgb(55,100,255,1)] to-white bg-clip-text font-normal text-transparent text-center pb-1">
+      <h1 className="text-6xl bg-gradient-to-r from-[rgb(55,100,255,1)] to-white bg-clip-text font-normal text-transparent text-center pb-1">
         Strategy & Business
         <br />
         Transformation
       </h1>
-      
-      {/* Main Content Panel */}
-      <div
-        className="relative w-full max-w-[360px] md:max-w-none md:w-[1240px] h-auto md:h-[600px] rounded-[30px] md:rounded-[50px] p-6 md:p-10 pt-20 md:pt-10 flex flex-col md:flex-row items-start gap-6 md:gap-10 mx-auto overflow-hidden md:overflow-visible"
-      >
-        <img className="absolute -top-4 -left-2 hidden md:pl-8 md:block md:w-[750px] md:h-[510px] lg:w-[1240px] lg:h-[600px] z-0 pointer-events-none select-none" alt="Union background" src="/Union.png" />
-        <img className="absolute inset-0 w-full h-full object-contain object-top md:hidden z-0 pointer-events-none select-none" alt="Union mobile background" src="/UnionM.png" />
-        {/* Transformation Areas (tabs) */}
-        <div className="absolute top-3 md:top-2  right-3 md:text-sm  lg:left-15 md:left-10 flex items-center justify-center md:justify-start md:gap-20 lg:gap-50 text-white/90 text-xs z-10">
-          {transformationAreas.map((area, index) => (
-            <div
-              key={index}
-              className="[font-family:'Aeonik_TRIAL-Regular',Helvetica] font-normal md:text-sm lg:text-lg leading-normal whitespace-nowrap hover:text-white transition-colors"
+
+      {/* Tabs */}
+      <div className=" flex items-center gap-55 w-[1240px] mr-0 overflow-x-auto relative ">
+        {transformationAreas.map((area) => {
+          const isActive = selectedArea === area;
+          return (
+            <button
+              key={area}
+              type="button"
+              onClick={() => setSelectedArea(area)}
+              className={`[font-family:'Aeonik_TRIAL-Regular',Helvetica] text-lg leading-normal whitespace-nowrap transition-colors rounded-2xl p-2 cursor-pointer ${
+                isActive
+                  ? "text-[#4f76ff] h-[70px]  rounded-b-none rounded-t-3xl border-0 p-6  bg-white/10 backdrop-blur-lg"
+                  : "text-white/90 ml-2 mr-0 hover:text-white"
+              }`}
             >
               {area}
-            </div>
-          ))}
-        </div>
+            </button>
+          );
+        })}
+      </div>
 
+      {/* Main Content Panel - only selected tab content */}
+      <div className="w-[1240px] h-[500px] rounded-b-3xl rounded-t-none  bg-white/10 backdrop-blur-lg p-5 flex items-start gap-6">
         {/* Left: Text */}
-        <div className="flex-1 flex flex-col items-start gap-6 md:gap-3 relative mt-2 md:mt-16 z-10">
-          <div className="[font-family:'Aeonik_TRIAL-Bold',Helvetica] font-bold text-white md:text-xl lg:text-2xl leading-7 md:text-[46px] md:leading-[46px]">
-            Business / Strategy
+        <div className="flex-1 flex flex-col items-start gap-6 relative p-10">
+          <div className="[font-family:'Aeonik_TRIAL-Bold',Helvetica] font-bold text-white text-[46px] leading-[46px]">
+            {active.titleLines[0]}
             <br />
-            Consulting
+            {active.titleLines[1]}
           </div>
-          <div className="flex flex-col items-start gap-6 md:gap-2 text-white/90">
-            {businessConsultingServices.map((service, index) => (
-              <div key={index} className="flex flex-col items-start gap-1 w-full ">
-                <div className="[font-family:'Aeonik_TRIAL-Bold',Helvetica] font-bold text-[#4f76ff] md:text-base lg:text-2xl leading-normal">
+          <div className="flex flex-col items-start gap-6 text-white">
+            {active.services.map((service, index) => (
+              <div key={index} className="flex flex-col items-start gap-1 w-full">
+                <div className="[font-family:'Aeonik_TRIAL-Bold',Helvetica] font-bold text-[#4f76ff] text-xl leading-normal">
                   {service.title}
                 </div>
-                <div className="[font-family:'Aeonik_TRIAL-Regular',Helvetica] text-base md:text-sm lg:text-xl leading-normal">
+                <div className="[font-family:'Aeonik_TRIAL-Regular',Helvetica] text-base leading-normal">
                   {service.description}
                 </div>
               </div>
@@ -76,9 +146,9 @@ const StrategyBusiness = () => {
 
         {/* Right: Image */}
         <img
-          className="w-full h-auto md:w-[300px] md:h-[240px] lg:w-[560px] lg:h-[360px] rounded-[18px] object-cover md:mb-6 md:mt-15 mr-0 md:mr-120 lg:mr-4 mt-0  z-10 shadow-lg"
-          alt="Workflow Strategy"
-          src="https://c.animaapp.com/mfvdxb8gInTGFO/img/rectangle-82.svg"
+          className="w-[520px] h-[360px] rounded-[18px] object-cover mt-16 mr-10"
+          alt={active.imageAlt}
+          src={active.image}
         />
       </div>
     </div>
