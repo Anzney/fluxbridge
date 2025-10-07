@@ -71,16 +71,16 @@ const Leadership = () => {
 
     // Define spacing based on screen size
     const spacing = {
-      mobile: { adjacent: 90, second: 80, outer: 70 },
-      tablet: { adjacent: 120, second: 105, outer: 90 },  // Adjust these values for md screens
-      desktop: { adjacent: 140, second: 125, outer: 110 }
+      mobile: { adjacent: 80, second: 68, outer: 60 },
+      tablet: { adjacent: 115, second: 92, outer: 80 },  // Adjust these values for md screens
+      desktop: { adjacent: 140, second: 115, outer: 100 }
     };
 
     const currentSpacing = spacing[screenSize];
 
     if (position === 0) {
       // Center image
-      scale = 1;
+      scale = 0.95;
       opacity = 1;
       zIndex = 50;
       blur = 0;
@@ -88,15 +88,15 @@ const Leadership = () => {
       verticalOffset = 0;
     } else if (absPosition === 1) {
       // Adjacent images
-      scale = 0.65;
+      scale = 0.90;
       opacity = 0.8;
       zIndex = 40;
       blur = 0;
       horizontalOffset = position * currentSpacing.adjacent;
-      verticalOffset = screenSize === 'mobile' ? 8 : 10;
+      verticalOffset = screenSize === 'mobile' ? 6 : 10;
     } else if (absPosition === 2) {
       // Second tier
-      scale = 0.45;
+      scale = 0.70;
       opacity = 0.6;
       zIndex = 30;
       blur = 1;
@@ -104,7 +104,7 @@ const Leadership = () => {
       verticalOffset = screenSize === 'mobile' ? 12 : 18;
     } else {
       // Outermost images
-      scale = 0.3;
+      scale = 0.5;
       opacity = 0.4;
       zIndex = 20;
       blur = 2;
