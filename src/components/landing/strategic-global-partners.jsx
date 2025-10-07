@@ -20,7 +20,7 @@ const partnersByCategory = {
     "/mask-group-7.png",
   ],
   "Business Consulting": ["/sammati_logo.png", "/baton.png"],
-  "IT Consulting & Services": ["/aqm-logo.png", "/notion-logo.png", "/zi.png"],
+  "IT Consulting & Services": ["anzney-logo.png","/aqm-logo.png", "/notion-logo.png", "/zi.png"],
   "Learning & Development": ["/leoron.png", "/skillup.png", "/nse-logo.png"],
 };
 
@@ -117,7 +117,7 @@ export default function StrategicGlobalPartners() {
           {partners.map((partner, index) => (
             <div
               key={index}
-              className="flex justify-center items-center p-4 bg-white/5 rounded-lg border border-[#d9d9d94c]"
+              className="flex justify-center items-center p-4 rounded-lg "
             >
               <img
                 className="object-contain max-w-full max-h-[60px] md:max-h-[80px]"
