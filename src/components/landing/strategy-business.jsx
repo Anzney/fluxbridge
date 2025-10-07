@@ -90,6 +90,12 @@ const StrategyBusiness = () => {
   };
 
   const active = contentByArea[selectedArea];
+  const topRounded =
+    selectedArea === "Business / Strategy Consulting"
+      ? "rounded-tr-3xl"
+      : selectedArea === "Technology & Digital"
+      ? "rounded-tl-3xl rounded-tr-3xl"
+      : "rounded-tl-3xl";
 
   return (
     <div className="mt-50 mb-15 z-5 flex flex-col items-center ">
@@ -101,7 +107,7 @@ const StrategyBusiness = () => {
       </h1>
 
       {/* Tabs */}
-      <div className=" flex justify-between items-center w-[1240px]  mr-0 overflow-x-auto relative ">
+      <div className=" flex justify-between items-center sm:w-[700px] xl:w-[1020px] lg:w-[927px] mr-0  lg:mb-0 overflow-x-auto relative ">
         {transformationAreas.map((area) => {
           const isActive = selectedArea === area;
           return (
@@ -109,7 +115,7 @@ const StrategyBusiness = () => {
               key={area}
               type="button"
               onClick={() => setSelectedArea(area)}
-              className={`[font-family:'Aeonik_TRIAL-Regular',Helvetica] text-lg leading-normal whitespace-nowrap transition-colors rounded-2xl  py-4 px-13.5  cursor-pointer ${
+              className={`[font-family:'Aeonik_TRIAL-Regular',Helvetica] text-lg leading-normal whitespace-nowrap transition-colors rounded-2xl  py-4 lg:px-10  cursor-pointer ${
                 isActive
                   ? "text-[#4f76ff] h-[70px]  rounded-b-none rounded-t-3xl border-0  bg-white/10 backdrop-blur-lg scrollbar-hide"
                   : "text-white/90  hover:text-white"
@@ -122,15 +128,15 @@ const StrategyBusiness = () => {
       </div>
 
       {/* Main Content Panel - only selected tab content */}
-      <div className="w-[1240px]  rounded-b-3xl rounded-t-none  bg-white/10 backdrop-blur-lg p-5 flex items-start gap-6">
+      <div className={`xl:w-[1020px] lg:w-[927px] sm:w-[700px]  rounded-b-3xl ${topRounded}  bg-white/10 backdrop-blur-lg p-5 flex items-start c`}>
         {/* Left: Text */}
-        <div className="flex-1 flex flex-col items-start gap-6 relative p-10">
+        <div className="flex-1 flex flex-col items-start md:gap-4 lg:gap-4  relative p-10">
           <div className="[font-family:'Aeonik_TRIAL-Bold',Helvetica] font-bold text-white text-[46px] leading-[46px]">
             {active.titleLines[0]}
             <br />
             {active.titleLines[1]}
           </div>
-          <div className="flex flex-col items-start gap-6 text-white">
+          <div className="flex flex-col items-start md:gap-4 lg:gap-6 text-white">
             {active.services.map((service, index) => (
               <div key={index} className="flex flex-col items-start gap-1 w-full">
                 <div className="[font-family:'Aeonik_TRIAL-Bold',Helvetica] font-bold text-[#4f76ff] text-xl leading-normal">
@@ -146,7 +152,7 @@ const StrategyBusiness = () => {
 
         {/* Right: Image */}
         <img
-          className="w-[520px] h-[360px] rounded-[18px] object-cover mt-16 mr-10"
+          className="w-[520px] h-[360px] sm:w-[320]  rounded-[18px] object-cover mt-16 mr-10"
           alt={active.imageAlt}
           src={active.image}
         />
