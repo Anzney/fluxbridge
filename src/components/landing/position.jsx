@@ -61,7 +61,7 @@ const KeyPosition = () => {
                 <div
                   key={index}
                   onClick={() => setSelectedPosition(position)}
-                  className={`${selectedPosition === position ? "bg-[#3764ff] shadow-[0px_0px_2.05px_#3764ff,0px_0px_4.1px_#3764ff,0px_0px_14.35px_#3764ff,0px_0px_28.69px_#3764ff,0px_0px_49.19px_#3764ff]" : "border-[0.5px] border-solid border-white shadow-[0px_4px_52.1px_#00000008]"} rounded-[50px] w-full 2xl:w-[610px] p-2 lg:py-3 xl:py-4 flex items-center justify-center cursor-pointer hover:bg-[#3764ff] transition-colors`}
+                  className={`${selectedPosition === position ? "bg-[#3764ff] shadow-[0px_0px_2.05px_#3764ff,0px_0px_4.1px_#3764ff,0px_0px_14.35px_#3764ff,0px_0px_28.69px_#3764ff,0px_0px_49.19px_#3764ff]" : "border-[0.5px] border-solid border-white shadow-[0px_4px_52.1px_#00000008]"} rounded-[50px] w-full p-2 lg:py-3 xl:py-4 flex items-center justify-center cursor-pointer hover:bg-[#3764ff] transition-colors`}
                 >
                   <div className="font-bold text-white text-base lg:text-lg 2xl:text-2xl leading-6 sm:leading-[30px] text-center">
                     {position}

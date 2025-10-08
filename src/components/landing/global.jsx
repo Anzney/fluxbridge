@@ -9,7 +9,7 @@ const GlobalPresence = () => {
           {/* Map Section with overlaid header */}
           <div className="relative w-full pt-20 md:pt-28 lg:pt-32 pb-16 md:pb-20 lg:pb-45">
             {/* Overlaid header */}
-            <div className="absolute top-2 md:top-2 left-4 right-4 z-10 flex items-center justify-between gap-3">
+            <div className="absolute top-2 left-5 md:left-8 lg:left-10  right-5 md:right-8 lg:right-10 z-10 flex items-center justify-between gap-3">
               <h2 className="bg-[linear-gradient(127deg,rgba(55,100,255,1)_0%,rgba(255,255,255,1)_100%)] bg-clip-text text-transparent font-normal leading-tight lg:leading-[1.1] text-3xl sm:text-4xl md:text-[42px] lg:text-[56px] md:whitespace-nowrap">
                 Our Global
                 <br className="sm:block md:hidden" />
@@ -24,7 +24,7 @@ const GlobalPresence = () => {
             </div>
             {/* Background map image */}
             <img
-              className="w-full h-auto"
+              className="w-full h-auto px-5 lg:px-10"
               alt="Global Map"
               src="https://c.animaapp.com/mfvdxb8gInTGFO/img/group-17.png"
             />
