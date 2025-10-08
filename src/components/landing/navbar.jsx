@@ -1,7 +1,6 @@
 "use client";
-import React, { useState, useEffect } from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import { Button } from "../ui/button";
 import { motion } from "motion/react";
 import { Sheet, SheetContent, SheetOverlay } from "../ui/sheet";
@@ -15,7 +14,7 @@ const Navbar = () => {
     { href: "#industries", label: "Industries" },
     { href: "#global", label: "Global Presence" },
     { href: "#clients", label: "Client & Partners" },
-  ]
+  ];
 
   // Close menu on resize to desktop
   useEffect(() => {
@@ -24,19 +23,19 @@ const Navbar = () => {
         setIsMenuOpen(false);
       }
     };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   // Prevent body scroll when menu is open
   useEffect(() => {
     if (isMenuOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, [isMenuOpen]);
 
@@ -49,7 +48,13 @@ const Navbar = () => {
       <div className="mx-auto max-w-8xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-20 items-center justify-between rounded-full px-4 sm:px-6">
           <Link href="/" className="flex items-center gap-2 z-50">
-            <Image src="/logo.png" alt="Flux Bridge" width={44} height={44} priority className='w-25 h-25' />
+            <img
+              src="/favicon.png"
+              alt="Flux Bridge"
+              width={44}
+              height={44}
+              className="w-25 h-25"
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -90,7 +95,10 @@ const Navbar = () => {
         <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
           {/* Ensure overlay is above everything */}
           <SheetOverlay className="z-[70] bg-black/60 backdrop-blur-sm" />
-          <SheetContent side="right" className="z-[80] bg-[#00276f] text-white xl:hidden w-[280px] sm:w-[320px] p-0">
+          <SheetContent
+            side="right"
+            className="z-[80] bg-[#00276f] text-white xl:hidden w-[280px] sm:w-[320px] p-0"
+          >
             <nav className="flex flex-col pt-28 px-6">
               {navItems.map((item, index) => (
                 <motion.div
@@ -114,9 +122,9 @@ const Navbar = () => {
                 transition={{ delay: 0.5 }}
                 className="mt-8"
               >
-                <Button 
-                  variant="pillDark" 
-                  size="xl" 
+                <Button
+                  variant="pillDark"
+                  size="xl"
                   className="w-full px-6"
                   onClick={handleLinkClick}
                 >
@@ -128,7 +136,7 @@ const Navbar = () => {
         </Sheet>
       )}
     </header>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
