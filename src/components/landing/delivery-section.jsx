@@ -26,7 +26,7 @@ const deliveryMethods = [
 
 const DeliverySection = () => {
   return (
-    <div className="relative mt-40 flex items-center flex-col justify-center gap-8 h-[calc(100vh-100px)]"
+    <div className="relative mt-40 flex items-center flex-col justify-center gap-8 py-24 md:py-28 lg:py-32"
       style={{
         backgroundImage: 'url(/Group.png)',
         backgroundSize: 'cover',
@@ -35,63 +35,59 @@ const DeliverySection = () => {
       }}
     > 
       
-      <div className="bg-gradient-to-r from-[rgb(55,100,255,1)] to-white bg-clip-text  font-normal text-transparent text-4xl lg:text-5xl xl:text-[56px] text-center">
+      <div className="bg-gradient-to-r from-[rgb(55,100,255,1)] to-white bg-clip-text  font-normal text-transparent text-4xl lg:text-5xl xl:text-[56px] text-center mb-20">
         Omni-Channel Delivery
       </div>
 
-      <div className="absolute left-[1246px] w-[405px] h-[685px] bg-[#0017ff] rounded-[202.31px/342.31px] blur-[397px] opacity-75" />
-      <div className="absolute  left-[-230px] w-[405px] h-[685px] bg-[#0017ff] rounded-[202.31px/342.31px] blur-[397px] opacity-75" />
-      
-      <div className='max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto'>
-        <img
-          className="w-full h-full z-20 hidden md:block"
-          alt="Group"
-          src="https://c.animaapp.com/mfvdxb8gInTGFO/img/group-6.png"
-        />
+      {/* Glow accents preserved, but without interfering with layout */}
+      <div className="pointer-events-none absolute -left-32 top-10 w-[405px] h-[685px] bg-[#0017ff] rounded-[202.31px/342.31px] blur-[397px] opacity-60" />
+      <div className="pointer-events-none absolute -right-32 bottom-10 w-[405px] h-[685px] bg-[#0017ff] rounded-[202.31px/342.31px] blur-[397px] opacity-60" />
 
-        <img
-          className="w-[171px] h-[616px] md:hidden"
-          alt="Group"
-          src="https://c.animaapp.com/mgait8g8g8XVIJ/img/group-57.png"
-        />
-
+      {/* Responsive grid of circular items */}
+      <div className="w-full max-w-7xl px-4 md:px-6 lg:px-8">
+        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-10 sm:gap-8 place-items-center">
+          {deliveryMethods.map((method, index) => (
+            <div
+              key={index}
+              className={`${index % 2 === 1 ? 'md:-translate-y-6 lg:-translate-y-16' : ''} flex flex-col items-center text-center gap-4 transition-transform`}
+            >
+              <div className="relative">
+                {/* Outer blue gradient ring */}
+                <div className="bg-gradient-to-b from-[#1E40FF] to-[#60A5FA] p-3 rounded-full">
+                  {/* Inner white circle */}
+                  <div className="bg-white rounded-full flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 shadow-xl">
+                    <img
+                      alt={method.title}
+                      src={`/${method.icon}`}
+                      className="w-8 h-8 sm:w-10 sm:h-10 md:w-18 md:h-18"
+                    />
+                  </div>
+                </div>
+                {/* Triangle pointer to text below */}
+                <svg
+                  className="absolute left-1/2 -translate-x-1/2 -bottom-3 md:-bottom-3.5"
+                  width="22"
+                  height="14"
+                  viewBox="0 0 22 14"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <defs>
+                    <linearGradient id={`circlePointerGrad-${index}`} x1="0" y1="0" x2="0" y2="14" gradientUnits="userSpaceOnUse">
+                      <stop stopColor="#1E40FF" />
+                      <stop offset="1" stopColor="#60A5FA" />
+                    </linearGradient>
+                  </defs>
+                  <path d="M11 14 L0 0 L22 0 Z" fill={`url(#circlePointerGrad-${index})`} />
+                </svg>
+              </div>
+              <div className="text-white text-sm sm:text-base md:text-lg lg:text-xl leading-snug whitespace-pre-line">
+                {method.title}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
-      <div className='hidden md:flex md:h-[90px] md:w-[90px] lg:h-[120px] lg:w-[120px] xl:h-[160px] xl:w-[160px] bg-white rounded-full shadow-2xl absolute top-[51.5%] lg:top-[51%] xl:top-[50.4%] items-center justify-center'>
-        <img alt="mask-1" src="/Mask-group-1.png" className="w-10 h-10 lg:w-14 xl:w-20 lg:h-14 xl:h-20" />
-      </div>
-      <div className='md:h-[90px] md:w-[90px] lg:h-[120px] lg:w-[120px] xl:h-[160px] xl:w-[160px] bg-white rounded-full shadow-2xl absolute top-[51.5%] lg:top-[51%] xl:top-[50.4%] left-[7%] xl:left-[8.4%] 2xl:left-[18.48%] hidden md:flex items-center justify-center'>
-        <img width={40} height={40} alt="mask-1" src="/Mask-group-4.png" className="w-10 h-10 lg:w-14 xl:w-20 lg:h-14 xl:h-20" />
-      </div>
-      <div className='md:h-[90px] md:w-[90px] lg:h-[120px] lg:w-[120px] xl:h-[160px] xl:w-[160px] bg-white rounded-full shadow-2xl absolute top-[44.5%] lg:top-[42%] xl:top-[37.5%] left-[25.5%] xl:left-[26.5%] 2xl:left-[32%] hidden md:flex items-center justify-center'>
-        <img width={40} height={40} alt="mask-1" src="/Mask-group-5.png" className="w-10 h-10 lg:w-14 xl:w-20 lg:h-14 xl:h-20" />
-      </div>
-      <div className='md:h-[90px] md:w-[90px] lg:h-[120px] lg:w-[120px] xl:h-[160px] xl:w-[160px] bg-white rounded-full shadow-2xl absolute top-[44.5%] lg:top-[42%] xl:top-[37.5%] right-[25.5%] xl:right-[26.4%] hidden md:flex items-center justify-center'>
-        <img width={40} height={40} alt="mask-1" src="/Mask-group-2.png" className="w-10 h-10 lg:w-14 xl:w-20 lg:h-14 xl:h-20" />
-      </div>
-      <div className='md:h-[90px] md:w-[90px] lg:h-[120px] lg:w-[120px] xl:h-[160px] xl:w-[160px] bg-white rounded-full shadow-2xl absolute top-[51.5%] lg:top-[51%] xl:top-[50.4%] right-[7%] xl:right-[8.35%] 2xl:right-[18.48%] hidden md:flex items-center justify-center'>
-        <img width={40} height={40} alt="mask-1" src="/Mask-group-3.png" className="w-10 h-10 lg:w-14 xl:w-20 lg:h-14 xl:h-20" />
-      </div>
-
-
-      <p className='absolute max-w-[250px] top-[19%] md:top-auto md:bottom-[26%] lg:bottom-[20%] xl:bottom-[10%] left-[6%] lg:left-[8%] text-center md:text-xl lg:text-2xl xl:text-3xl'>
-        Live In Person <br/> Training
-      </p>
-
-      <p className='absolute top-[35%] md:top-auto md:bottom-[34%] lg:bottom-[30%] xl:bottom-[25%] right-10 md:right-auto md:left-[25%] lg:left-[26%] xl:left-[27.50%] text-center md:text-xl lg:text-2xl xl:text-3xl'>
-        Live Virtual <br /> Training
-      </p>
-
-      <p className='absolute bottom-[42%] md:bottom-[26%] lg:bottom-[20%] xl:bottom-[15%] left-18 md:left-[50%] -translate-x-1/2 text-center md:text-xl lg:text-2xl xl:text-3xl'>
-        Self Paced <br className='md:hidden' /> E-<br className='hidden md:block' />Learning <br className='md:hidden' /> (LMS/LXP)
-      </p>
-
-      <p className='absolute bottom-[29%] md:bottom-[37%] lg:bottom-[33%] xl:bottom-[29%] 2xl:bottom-[31%] right-8 md:right-[25%] 2xl:right-[31.50%] text-center md:text-xl lg:text-2xl xl:text-3xl'>
-        Gamification
-      </p>
-
-      <p className='absolute bottom-18 md:bottom-[26%] lg:bottom-[20%] xl:bottom-[12%] 2xl:bottom-[15%] left-8 md:left-auto md:right-[7%] xl:right-[8%] 2xl:right-[16%] text-center md:text-xl lg:text-2xl xl:text-3xl'>
-        Simulations <br className='md:hidden' /> & AI <br className='hidden md:block' /> based <br className='md:block' /> learning
-      </p>
 
     </div>
   )

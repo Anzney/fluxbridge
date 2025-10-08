@@ -30,30 +30,77 @@ const GlobalPresence = () => {
             />
 
             {/* Location markers and labels */}
-            <div className="absolute inset-0">
-              {/* Riyadh */}
-              <div className="absolute top-[45%] left-[52%] text-white text-[10px] sm:text-xs md:text-sm text-center font-bold">
-                Riyadh, KSA (HQ)
-              </div>
-
-              {/* Mumbai */}
-              <div className="absolute top-[50%] left-[70%] hidden sm:block text-white text-[10px] sm:text-xs md:text-sm font-bold">
-                Mumbai, India
-              </div>
-
-              {/* Dubai */}
-              <div className="absolute top-[55%] left-[60%] hidden sm:block text-white text-[10px] sm:text-xs md:text-sm font-bold">
-                Dubai, UAE
-              </div>
-
+            <div className="absolute inset-0 pt-20 md:pt-28 lg:pt-32">
               {/* Seattle */}
-              <div className="absolute top-[40%] left-[25%] hidden md:block text-white text-xs font-bold">
-                Seattle, USA
+              <div className="absolute top-[42%] left-[15%] hidden md:flex flex-col items-center gap-1">
+                <img
+                  className="w-6 h-6 md:w-8 md:h-8"
+                  alt="Location Pin"
+                  src="https://c.animaapp.com/mfvdxb8gInTGFO/img/vector.svg"
+                />
+                <div className="text-white text-xs font-bold text-center whitespace-nowrap">
+                  Seattle<br/>USA
+                </div>
               </div>
 
-              {/* UK */}
-              <div className="absolute top-[35%] left-[48%] text-white text-[10px] sm:text-xs md:text-sm font-bold">
-                Hounslow, UK
+              {/* Hounslow, UK */}
+              <div className="absolute top-[40%] left-[44%] flex flex-col items-center gap-1">
+                <img
+                  className="w-6 h-6 md:w-8 md:h-8"
+                  alt="Location Pin"
+                  src="https://c.animaapp.com/mfvdxb8gInTGFO/img/vector.svg"
+                />
+                <div className="text-white text-[10px] sm:text-xs md:text-sm font-bold text-center whitespace-nowrap">
+                  Hounslow<br/>UK
+                </div>
+              </div>
+
+              {/* Riyadh, KSA (HQ) */}
+              <div className="absolute top-[53%] left-[54%] flex flex-col items-center gap-1">
+                <img
+                  className="w-6 h-6 md:w-8 md:h-8"
+                  alt="Location Pin"
+                  src="https://c.animaapp.com/mfvdxb8gInTGFO/img/vector.svg"
+                />
+                <div className="text-white text-[10px] sm:text-xs md:text-sm font-bold text-center whitespace-nowrap mt-7 ml-[-1px]">
+                  Riyadh, Kingdom of<br/>Saudia Arabia (HQ)
+                </div>
+              </div>
+
+              {/* Dubai, UAE */}
+              <div className="absolute top-[52%] left-[59%] hidden sm:flex flex-col-reverse items-center gap-1">
+                <img
+                  className="w-1 h-3 md:w-8 md:h-8"
+                  alt="Location Pin"
+                  src="https://c.animaapp.com/mfvdxb8gInTGFO/img/vector.svg"
+                />
+                <div className="text-white text-[10px] sm:text-xs md:text-sm font-bold text-center whitespace-nowrap">
+                  Dubai, UAE
+                </div>
+              </div>
+
+              {/* Oman */}
+              <div className="absolute top-[53%] left-[61%] hidden sm:flex flex-col items-center gap-1">
+                <img
+                  className="w-6 h-6 md:w-8 md:h-8"
+                  alt="Location Pin"
+                  src="https://c.animaapp.com/mfvdxb8gInTGFO/img/vector.svg"
+                />
+                <div className="text-white text-[10px] sm:text-xs md:text-sm font-bold text-center whitespace-nowrap">
+                  Oman
+                </div>
+              </div>
+
+              {/* Mumbai, India */}
+              <div className="absolute top-[54.1%] left-[65.3%] hidden sm:flex flex-col items-center gap-1">
+                <img
+                  className="w-6 h-6 md:w-8 md:h-8"
+                  alt="Location Pin"
+                  src="https://c.animaapp.com/mfvdxb8gInTGFO/img/vector.svg"
+                />
+                <div className="text-white text-[5px] sm:text-xs md:text-sm font-bold text-center whitespace-nowrap">
+                  Mumbai<br/>India
+                </div>
               </div>
             </div>
           </div>
