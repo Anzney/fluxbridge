@@ -45,15 +45,21 @@ export default function Home() {
       <div className="absolute top-[1469px] left-[1246px] w-[405px] h-[685px] bg-[#0017ff] rounded-[202.31px/342.31px] blur-[397px] opacity-75" />
       <div className="absolute top-[898px] left-[-230px] w-[405px] h-[685px] bg-[#0017ff] rounded-[202.31px/342.31px] blur-[397px] opacity-75" />
 
-      <About />
+      <section id="about" className="scroll-mt-28">
+        <About />
+      </section>
 
-      <Services />
+      <section id="services" className="scroll-mt-28">
+        <Services />
+      </section>
 
       <ExecutiveSearchSection />
 
       <KeyPosition />
 
-      <Sectors />
+      <section id="industries" className="scroll-mt-28">
+        <Sectors />
+      </section>
 
       <LearningAndDevelopment />
 
@@ -65,9 +71,13 @@ export default function Home() {
 
       <OmniChannelDelivery />
 
-      <GlobalPresence />
+      <section id="global" className="scroll-mt-28">
+        <GlobalPresence />
+      </section>
       
-      <StrategicGlobalPartners />
+      <section id="clients" className="scroll-mt-28">
+        <StrategicGlobalPartners />
+      </section>
 
       <Footer />
 

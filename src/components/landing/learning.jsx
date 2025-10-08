@@ -69,7 +69,7 @@ const LearningAndDevelopment = () => {
             <div
               className="absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 md:w-[79px] md:h-[79px] rounded-full flex items-center justify-center transition-colors duration-200 ]"
             >
-              <img className="w-8 h-8 md:w-10 md:h-10" alt="Mask group" src={service.icon} />
+              <img className="size-10 md:size-18 mt-5" alt="Mask group" src={service.icon} />
             </div>
             <div className="absolute bottom-4 left-4 right-4 md:bottom-6 md:left-6 md:right-6 [font-family:'DM_Sans',Helvetica] font-bold text-white text-xs sm:text-sm md:text-[15px] text-center tracking-[0] leading-tight md:leading-[21.8px]">
               {service.title}
