@@ -1,5 +1,34 @@
-import React from 'react'
+"use client"
+
+import React, { useState } from 'react'
 import { Card, CardContent } from '../ui/card';
+
+const positionData = {
+  "Top Executive Leadership": [
+    "Chief Operating Officer (COO)",
+    "Deputy CFO CHRO",
+    "(Chief Human Resources Officer)"
+  ],
+  "Business & Investment Leadership": [
+    "Head of Investment Banking",
+    "Head of Asset Management",
+    "Chief of Venture Development",
+    "Head of Compliance"
+  ],
+  "Corporate Functions & Governance": [
+    "Head of Procurement",
+    "Director of Contracts",
+    "PMO Governance Manager"
+  ],
+  "Data, Technology & Risk Leadership": [
+    "Data Modeller Head",
+    "Data Protection Head"
+  ],
+  "Specialised Consultants & Analysts": [
+    "SAP QM & PM Consultant",
+    "Venture Capital Analyst"
+  ]
+};
 
 const keyPositions = [
   "Top Executive Leadership",
@@ -10,86 +39,89 @@ const keyPositions = [
 ];
 
 const KeyPosition = () => {
+  const [selectedPosition, setSelectedPosition] = useState(keyPositions[0]);
+
   return (
     <div className='flex relative items-center justify-center pt-24 sm:pt-32 md:pt-40 px-4 sm:px-6'>
-      {/* Decorative blur - hidden on small screens to reduce clutter */}
       <div className="hidden sm:block absolute top-1/2 -translate-y-1/2 sm:w-80 sm:h-80 md:w-[550px] md:h-[550px] bg-[#0017ff] rounded-[40px] md:rounded-[75px] blur-[160px] md:blur-[250px] opacity-65 -z-10" />
-      <Card className="w-full max-w-[1350px] 2xl:h-[797px] bg-[#ffffff0d] rounded-2xl md:rounded-[50px] backdrop-blur-[25px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(25px)_brightness(100%)] border-none">
-        <CardContent className="p-6 sm:p-8 2xl:p-0 relative">
+      <Card className=" p-0 bg-[#ffffff0d] rounded-2xl md:rounded-3xl lg:rounded-[50px] backdrop-blur-[25px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(25px)_brightness(100%)] border-none">
+        <CardContent className="p-6 lg:p-10 xl:p-20">
           {/* Header */}
-          <div className="relative 2xl:absolute 2xl:top-[51px] 2xl:left-[calc(50%_-_620px)] w-full 2xl:w-[753px] text-center 2xl:text-left bg-[linear-gradient(127deg,rgba(55,100,255,1)_0%,rgba(255,255,255,1)_100%)] [-webkit-background-clip:text] bg-clip-text [-webkit-text-fill-color:transparent] [text-fill-color:transparent] [font-family:'Aeonik_TRIAL-Regular',Helvetica] font-normal text-transparent text-2xl sm:text-4xl 2xl:text-[56px] leading-tight 2xl:leading-[normal]">
+          <div className="w-full mb-6 lg:mb-10 2xl:w-[753px] text-center md:text-left bg-[linear-gradient(127deg,rgba(55,100,255,1)_0%,rgba(255,255,255,1)_100%)] [-webkit-background-clip:text] bg-clip-text [-webkit-text-fill-color:transparent] [text-fill-color:transparent] [font-family:'Aeonik_TRIAL-Regular',Helvetica] font-normal text-transparent text-2xl md:text-3xl lg:text-4xl 2xl:text-[56px] leading-tight 2xl:leading-[normal]">
             Key Positions Hired For
             <br />
             Our Esteemed Clients
           </div>
 
           {/* Responsive layout: stack on mobile, grid on md–xl, precise absolute layout on 2xl+ */}
-          <div className="mt-6 2xl:mt-0 grid grid-cols-1 md:grid md:grid-cols-2 md:gap-8 2xl:block">
+          <div className="flex gap-8 md:gap-10 xl:gap-25 flex-col md:flex-row md:w-[650px] h-[560px] sm:h-auto lg:w-[800px] xl:w-5xl">
             {/* Left: Key Positions List */}
-            <div className="mt-6 sm:mt-10 md:mt-4 2xl:mt-0 2xl:absolute 2xl:top-[245px] 2xl:left-[100px] flex flex-col gap-3 sm:gap-[18px]">
+            <div className="flex flex-col gap-3 lg:gap-4 xl:gap-6 md:w-1/2">
               {keyPositions.map((position, index) => (
                 <div
                   key={index}
-                  className={`${index === 0 ? "bg-[#3764ff] shadow-[0px_0px_2.05px_#3764ff,0px_0px_4.1px_#3764ff,0px_0px_14.35px_#3764ff,0px_0px_28.69px_#3764ff,0px_0px_49.19px_#3764ff]" : "border-[0.5px] border-solid border-white shadow-[0px_4px_52.1px_#00000008]"} rounded-[50px] w-full 2xl:w-[610px] py-3 sm:py-4 2xl:py-0 2xl:h-[83px] flex items-center justify-center cursor-pointer hover:bg-[#3764ff] transition-colors`}
+                  onClick={() => setSelectedPosition(position)}
+                  className={`${selectedPosition === position ? "bg-[#3764ff] shadow-[0px_0px_2.05px_#3764ff,0px_0px_4.1px_#3764ff,0px_0px_14.35px_#3764ff,0px_0px_28.69px_#3764ff,0px_0px_49.19px_#3764ff]" : "border-[0.5px] border-solid border-white shadow-[0px_4px_52.1px_#00000008]"} rounded-[50px] w-full 2xl:w-[610px] p-2 lg:py-3 xl:py-4 flex items-center justify-center cursor-pointer hover:bg-[#3764ff] transition-colors`}
                 >
-                  <div className="[font-family:'DM_Sans',Helvetica] font-bold text-white text-base sm:text-xl 2xl:text-2xl leading-6 sm:leading-[30px] text-center px-4">
+                  <div className="font-bold text-white text-base lg:text-lg 2xl:text-2xl leading-6 sm:leading-[30px] text-center">
                     {position}
                   </div>
                 </div>
               ))}
             </div>
 
-            {/* Right: Image and overlays */}
-            {/* Border box (2xl+) at exact position */}
-            <div className="hidden 2xl:block absolute top-[194px] left-[771px] w-[569px] h-[497px] rounded-[50px] border border-solid border-[#3764ff]" />
+            <div className='relative w-1/2' >
 
-            {/* Image - responsive on mobile, grid aligned on md–xl, absolute on 2xl */}
-            <div className="mt-8 md:mt-0 flex justify-center md:justify-end 2xl:block">
-              <img
-                className="w-full max-w-[583px] h-auto md:max-w-[520px] lg:max-w-[560px] 2xl:w-[583px] 2xl:h-[524px] 2xl:absolute 2xl:top-[212px] 2xl:left-[740px]"
-                alt="Image"
-                src="https://c.animaapp.com/mfvdxb8gInTGFO/img/image.svg"
-              />
-            </div>
-
-            {/* Bottom badge */}
-            <div className="relative w-full mt-4 md:mt-2 flex items-center md:justify-end 2xl:justify-center">
-              <div className="hidden 2xl:block absolute top-[641px] left-[740px] w-[300px] h-[94px]">
+              <div className="absolute -top-3 md:-top-4 left-10 md:left-4 lg:left-6 xl:left-10 rounded-2xl border border-solid border-[#3764ff] size-[260px] md:h-[259px] md:w-[300px] lg:h-[320px] lg:w-[370px] xl:h-[380px] xl:w-[440px] md:rounded-[28.96px] md:border-[0.58px]" />   
+            
+              
+              <div className="absolute flex justify-center">
                 <img
-                  className="absolute top-0 left-0 w-[298px] h-[94px]"
-                  alt="Rectangle"
-                  src="https://c.animaapp.com/mfvdxb8gInTGFO/img/rectangle-51.svg"
+                  className="min-w-[290px] sm:min-w-0"
+                  alt="Image"
+                  src="https://c.animaapp.com/mfvdxb8gInTGFO/img/image.svg"
                 />
-                <div className="absolute top-6 left-[calc(50.00%_-_26px)] w-[140px] [font-family:'DM_Sans',Helvetica] font-bold text-white text-lg tracking-[0] leading-[normal]">
-                  Top Executive Leadership
+              </div>
+
+              <div className="absolute left-6 top-6 lg:left-10 lg:top-8 ">
+                <div className="2xl:w-[322px] md:max-w-[520px] md:ml-auto font-bold text-white text-sm md:text-base xl:text-lg leading-7 sm:leading-8 2xl:leading-[48px]">
+                  {positionData[selectedPosition].map((item, index) => (
+                    <div key={index} className=" flex items-center mb-2">
+                    
+                      <span className="w-[5px] h-[5px] bg-[#3764ff] rounded-[2.45px] mr-3 flex-shrink-0" />
+                      <span className="whitespace-nowrap">{item}</span>
+                    </div>
+                  ))}
                 </div>
-                <img
-                  className="absolute top-[23px] left-[35px] w-[54px] h-[54px]"
-                  alt="Icon"
-                  src="https://c.animaapp.com/mfvdxb8gInTGFO/img/icon.svg"
-                />
               </div>
-              {/* Simplified badge on mobile/tablet */}
-              <div className="2xl:hidden flex items-center gap-3 px-4 py-3 rounded-full border border-white/60 bg-[#3764ff]/20">
-                <img className="w-7 h-7" alt="Icon" src="https://c.animaapp.com/mfvdxb8gInTGFO/img/icon.svg" />
-                <span className="[font-family:'DM_Sans',Helvetica] font-bold text-white text-sm sm:text-base">Top Executive Leadership</span>
-              </div>
-            </div>
+    
 
-            {/* Bullet list to the right of image (md+) or below on mobile */}
-            <div className="mt-6 md:mt-4">
-              <div className="2xl:absolute 2xl:top-[296px] 2xl:left-[787px] 2xl:w-[322px] relative md:max-w-[520px] md:ml-auto pl-6 [font-family:'Aeonik_TRIAL-Bold',Helvetica] font-bold text-white text-base sm:text-lg 2xl:text-xl leading-7 sm:leading-8 2xl:leading-[48px]">
-                <span>Chief Operating Officer (COO)</span>
-                <br />
-                <span>Deputy CFO CHRO</span>
-                <br />
-                <span>(Chief Human Resources Officer)</span>
-                {/* bullets */}
-                <span className="absolute top-[10px] left-0 w-[5px] h-[5px] bg-[#3764ff] rounded-[2.45px]" />
-                <span className="absolute top-[38px] sm:top-[42px] 2xl:top-[70px] left-0 w-[5px] h-[5px] bg-[#3764ff] rounded-[2.45px]" />
-                <span className="absolute top-[66px] sm:top-[74px] 2xl:top-[118px] left-0 w-[5px] h-[5px] bg-[#3764ff] rounded-[2.45px]" />
+              <div className='absolute -bottom-69 md:bottom-6 lg:-bottom-2 xl:bottom-0 left-0'>
+
+                <div className=" w-full mt-4 md:mt-2 flex items-center md:justify-end 2xl:justify-center">
+                  <div className=" relative lg:w-[238px] lg:h-[94px] xl:w-[298px] xl:h-[94px] w-[200px] md:w-[192px] md:h-[64px]">
+                    <img
+                      className=" md:top-0 md:left-0 w-[398px] h-[94px]"
+                      alt="Rectangle"
+                      src="https://c.animaapp.com/mfvdxb8gInTGFO/img/rectangle-51.svg"
+                    />
+                    <div className="absolute top-7 lg:top-5 left-12 lg:left-12 xl:left-18 text-xs font-bold text-white lg:text-sm xl:text-lg md:text-[10px]">
+                      {selectedPosition}
+                    </div>
+                    <img
+                      className=" absolute top-10 md:top-7 lg:top-6 left-2 xl:w-[54px] xl:h-[54px] size-6 md:w-[31px] md:h-[31px]"
+                      alt="Icon"
+                      src="https://c.animaapp.com/mfvdxb8gInTGFO/img/icon.svg"
+                    />
+                  </div>
+                  
+                
+                </div>
               </div>
+              
+              
             </div>
+            
           </div>
         </CardContent>
       </Card>
