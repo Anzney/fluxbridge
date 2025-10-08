@@ -59,7 +59,7 @@ const LearningAndDevelopment = () => {
       </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 w-full max-w-7xl  transition-all duration-200 ">
         {learningServices.map((service, index) => (
-          <div key={index} className="group relative w-full aspect-[400/211] max-w-[400px] mx-auto bg-[#1a1a1a] border border-gray-700 cursor-pointer rounded-4xl transition-all duration-200 hover:rounded-2xl ring-0 group-hover:ring-2 ring-[#3855bc]">
+          <div key={index} className="group relative w-full aspect-[400/211] max-w-[400px] mx-auto bg-[#1a1a1a] border border-gray-700 hover:border-[#3764ff] cursor-pointer rounded-4xl transition-all duration-200 hover:rounded-2xl ring-0 group-hover:ring-2 ring-[#3855bc]">
             {/* <img
               className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
               alt="Rectangle"
