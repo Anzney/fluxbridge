@@ -14,6 +14,7 @@ const Navbar = () => {
     { href: "#industries", label: "Industries" },
     { href: "#global", label: "Global Presence" },
     { href: "#clients", label: "Client & Partners" },
+    { href: "#clients", label: "Client & Partners" },
   ];
 
   // Close menu on resize to desktop
