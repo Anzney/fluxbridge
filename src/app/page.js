@@ -15,6 +15,7 @@ import StrategicGlobalPartners from "@/components/landing/strategic-global-partn
 import Footer from "@/components/landing/footer";
 import Leadership from "@/components/landing/leadership";
 import GlobalPresence from "@/components/landing/global";
+import Contact from "@/components/landing/contact";
 
 export default function Home() {
   return (
@@ -77,6 +78,10 @@ export default function Home() {
       
       <section id="clients" className="scroll-mt-28">
         <StrategicGlobalPartners />
+      </section>
+
+      <section id="contact" className="scroll-mt-28">
+        <Contact />
       </section>
 
       <Footer />

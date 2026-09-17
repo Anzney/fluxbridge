@@ -72,9 +72,11 @@ const Navbar = () => {
 
           {/* Desktop Contact Button */}
           <div className="hidden xl:flex items-center gap-3">
-            <Button variant="pillDark" size="xl" className="px-6">
-              Contact
-            </Button>
+            <Link href="#contact">
+              <Button variant="pillDark" size="xl" className="px-6">
+                Contact
+              </Button>
+            </Link>
           </div>
 
           {/* Hamburger Menu Button - Tablet/Mobile */}
@@ -122,14 +124,15 @@ const Navbar = () => {
                 transition={{ delay: 0.5 }}
                 className="mt-8"
               >
+              <Link href="#contact" onClick={handleLinkClick}>
                 <Button
                   variant="pillDark"
                   size="xl"
                   className="w-full px-6"
-                  onClick={handleLinkClick}
                 >
                   Contact
                 </Button>
+              </Link>
               </motion.div>
             </nav>
           </SheetContent>
