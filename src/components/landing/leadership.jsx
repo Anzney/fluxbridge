@@ -1,215 +1,362 @@
-'use client'
+"use client";
 
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from "react";
+import { ArrowUpRight } from "lucide-react";
+
+const teamMembers = [
+  {
+    name: "Roque Dcosta",
+    image: "/teams/Roque.png",
+    title: "Managing Director",
+  },
+  {
+    name: "Khalid Abdallah Al-Damegh",
+    image: "/teams/Khalid.png",
+    title: "Leadership Team",
+  },
+  {
+    name: "Alan Castelino",
+    image: "/teams/Alan.png",
+    title: "Leadership Team",
+  },
+  {
+    name: "Vaishali Castelino",
+    image: "/teams/Vaishali.png",
+    title: "Leadership Team",
+  },
+  {
+    name: "Abdulmalek Al-Eisa",
+    image: "/teams/Abdulmalek.png",
+    title: "Management Team",
+  },
+  {
+    name: "Abhay Kumar",
+    image: "/teams/Abhay.png",
+    title: "Management Team",
+  },
+  {
+    name: "Abiali Shaikh",
+    image: "/teams/Abiali.png",
+    title: "Management Team",
+  },
+  {
+    name: "Amit Desai",
+    image: "/teams/amit.png",
+    title: "Management Team",
+  },
+  {
+    name: "Farhan Khan",
+    image: "/teams/Farhan.png",
+    title: "Management Team",
+  },
+  {
+    name: "Hamed Mohammed",
+    image: "/teams/Hamed.png",
+    title: "Management Team",
+  },
+  {
+    name: "Kavilash Chawla",
+    image: "/teams/Kavilash.png",
+    title: "Management Team",
+  },
+  {
+    name: "Raghad Alamri",
+    image: "/teams/Raghad.png",
+    title: "Management Team",
+  },
+  {
+    name: "Vikrant Ponkshe",
+    image: "/teams/Vikrant.png",
+    title: "Management Team",
+  },
+  {
+    name: "Vinod Kumar Chockalingam",
+    image: "/teams/Vinod.png",
+    title: "Management Team",
+  },
+  {
+    name: "Wala'a Dashash",
+    image: "/teams/Wala'a.png",
+    title: "Management Team",
+  },
+  {
+    name: "Wedad Dashash",
+    image: "/teams/Wedad.png",
+    title: "Management Team",
+  },
+];
 
 const Leadership = () => {
-  const [centerIndex, setCenterIndex] = useState(0);
-  const [screenSize, setScreenSize] = useState('desktop');
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
-  // Detect screen size
+  /*
+    Automatically move to the next person.
+  */
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setScreenSize('mobile');
-      } else if (window.innerWidth < 1280) {
-        setScreenSize('tablet');
-      } else {
-        setScreenSize('desktop');
-      }
-    };
+    if (isPaused) return;
 
-    handleResize(); // Initial check
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  // Team members data with their images
-  const teamMembers = [
-    { name: 'Roque Dcosta', image: '/teams/Roque.png', title: 'Managing Director' },
-    { name: 'Khalid Abdallah Al-Damegh', image: '/teams/Khalid.png', title: 'Leadership Team' },
-    { name: 'Alan Castelino', image: '/teams/Alan.png', title: 'Leadership Team' },
-    { name: 'Vaishali Castelino', image: '/teams/Vaishali.png', title: 'Leadership Team' },
-    { name: 'Abdulmalek Al-Eisa', image: '/teams/Abdulmalek.png', title: 'Management Team' },
-    { name: 'Abhay Kumar', image: '/teams/Abhay.png', title: 'Management Team' },
-    { name: 'Abiali Shaikh', image: '/teams/Abiali.png', title: 'Management Team' },
-    { name: 'Amit Desai', image: '/teams/amit.png', title: 'Management Team' },
-    { name: 'Farhan Khan', image: '/teams/Farhan.png', title: 'Management Team' },
-    { name: 'Hamed Mohammed', image: '/teams/Hamed.png', title: 'Management Team' },
-    { name: 'Kavilash Chawla', image: '/teams/Kavilash.png', title: 'Management Team' },
-    { name: 'Raghad Alamri', image: '/teams/Raghad.png', title: 'Management Team' },
-    { name: 'Vikrant Ponkshe', image: '/teams/Vikrant.png', title: 'Management Team' },
-    { name: 'Vinod Kumar Chockalingam', image: '/teams/Vinod.png', title: 'Management Team' },
-    { name: "Wala'a Dashash", image: '/teams/Wala\'a.png', title: 'Management Team' },
-    { name: 'Wedad Dashash', image: '/teams/Wedad.png', title: 'Management Team' },
-  ];
-
-  // Auto-rotate carousel every 3 seconds
-  useEffect(() => {
     const interval = setInterval(() => {
-      setCenterIndex((prev) => (prev + 1) % teamMembers.length);
-    }, 3000);
+      setActiveIndex((prev) => (prev + 1) % teamMembers.length);
+    }, 2500);
+
     return () => clearInterval(interval);
-  }, [teamMembers.length]);
+  }, [isPaused]);
 
-  // Get visible team members (7 at a time)
-  const getVisibleMembers = () => {
-    const visible = [];
-    for (let i = -3; i <= 3; i++) {
-      const index = (centerIndex + i + teamMembers.length) % teamMembers.length;
-      visible.push({
-        ...teamMembers[index],
-        position: i,
-      });
-    }
-    return visible;
-  };
-
-  // Calculate scale and styling based on position
-  const getImageStyle = (position) => {
-    const absPosition = Math.abs(position);
-    let scale, opacity, zIndex, blur, horizontalOffset, verticalOffset;
-
-    // Define spacing based on screen size
-    const spacing = {
-      mobile: { adjacent: 80, second: 68, outer: 60 },
-      tablet: { adjacent: 115, second: 92, outer: 80 },  // Adjust these values for md screens
-      desktop: { adjacent: 140, second: 115, outer: 100 }
-    };
-
-    const currentSpacing = spacing[screenSize];
-
-    if (position === 0) {
-      // Center image
-      scale = 0.95;
-      opacity = 1;
-      zIndex = 50;
-      blur = 0;
-      horizontalOffset = 0;
-      verticalOffset = 0;
-    } else if (absPosition === 1) {
-      // Adjacent images
-      scale = 0.90;
-      opacity = 0.8;
-      zIndex = 40;
-      blur = 0;
-      horizontalOffset = position * currentSpacing.adjacent;
-      verticalOffset = screenSize === 'mobile' ? 6 : 10;
-    } else if (absPosition === 2) {
-      // Second tier
-      scale = 0.70;
-      opacity = 0.6;
-      zIndex = 30;
-      blur = 1;
-      horizontalOffset = position * currentSpacing.second;
-      verticalOffset = screenSize === 'mobile' ? 12 : 18;
-    } else {
-      // Outermost images
-      scale = 0.5;
-      opacity = 0.4;
-      zIndex = 20;
-      blur = 2;
-      horizontalOffset = position * currentSpacing.outer;
-      verticalOffset = screenSize === 'mobile' ? 15 : 22;
-    }
-
-    return {
-      transform: `translate3d(${horizontalOffset}px, ${verticalOffset}px, 0) scale(${scale})`,
-      opacity,
-      zIndex,
-      filter: blur > 0 ? `blur(${blur}px)` : 'none',
-      backfaceVisibility: 'hidden',
-      WebkitBackfaceVisibility: 'hidden',
-    };
-  };
-
-  const visibleMembers = getVisibleMembers();
-  const centerMember = teamMembers[centerIndex];
+  const activeMember = teamMembers[activeIndex];
 
   return (
-    <div className='relative h-[400px] md:h-screen xl:h-[calc(100vh+200px)] mb-40 overflow-x-clip'>
-        {/* Circular Design Elements */}
-        <img src="/Group.png" className='absolute' />
-        <img src="/Group.png" className='absolute rotate-180' />
-        <div className="absolute right-0 top-0 w-[405px] h-[400px] md:h-screen bg-[#0017ff] rounded-[202.31px/342.31px] blur-[397px] opacity-75" />
-        <div className="absolute left-0 top-0 w-[405px] h-[400px] md:h-screen bg-[#0017ff] rounded-[202.31px/342.31px] blur-[397px] opacity-75" />
-        
-        <img
-          className="absolute left-1/2 -translate-x-1/2 md:w-[800px] xl:w-[1201px] md:h-[800px] xl:h-[1201px]"
-          alt="Ellipse"
-          src="https://c.animaapp.com/mfvdxb8gInTGFO/img/ellipse-4146.svg"
-        />
+    <section className="relative overflow-hidden bg-[#07111f] text-white">
 
-        <img
-          className="absolute left-1/2 -translate-x-1/2 top-7 md:top-25 w-[380px] h-[380px] md:w-[600px] xl:w-[1001px] md:h-[600px] xl:h-[1001px]"
-          alt="Ellipse"
-          src="https://c.animaapp.com/mfvdxb8gInTGFO/img/ellipse-4142.svg"
-        />
+      {/* Background */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,rgba(0,59,150,0.22),transparent_38%),radial-gradient(circle_at_5%_80%,rgba(158,27,30,0.12),transparent_30%)]" />
 
-        <img
-          className="absolute left-1/2 -translate-x-1/2 top-16 md:top-50 w-[300px] h-[300px] md:w-[400px] xl:w-[801px] md:h-[400px] xl:h-[801px]"
-          alt="Ellipse"
-          src="https://c.animaapp.com/mfvdxb8gInTGFO/img/ellipse-4143.svg"
-        />
+      {/* Blue atmosphere */}
+      <div className="pointer-events-none absolute left-1/2 top-[45%] h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#003b96]/10 blur-[180px]" />
 
-        <img
-          className="absolute left-1/2 -translate-x-1/2 top-14 md:top-20 md:w-[600px] xl:w-[1008px] md:h-[600px] xl:h-[1008px]"
-          alt="Ellipse"
-          src="https://c.animaapp.com/mfvdxb8gInTGFO/img/ellipse-4144.svg"
-        />
+      <div className="relative z-10 mx-auto max-w-[1500px] px-6 py-24 sm:px-10 sm:py-32 lg:px-16 lg:py-40">
 
-        <div className="absolute left-1/2 -translate-x-1/2 top-30 md:top-65 xl:top-90 w-[548.9px] mt-[-1.00px] bg-[linear-gradient(180deg,rgba(255,255,255,1)_0%,rgba(0,23,255,1)_100%)] [-webkit-background-clip:text] bg-clip-text [-webkit-text-fill-color:transparent] [text-fill-color:transparent] [font-family:'Aeonik_TRIAL-Regular',Helvetica] font-normal text-transparent lg:text-3xl xl:text-5xl text-center tracking-[-0.96px] leading-[normal]">
-          Executive Leadership <br/> / Team / Advisor
-        </div>
+        {/* =====================================================
+            HEADER
+        ====================================================== */}
+        <div className="mb-8 border-t border-white/10 pt-8 lg:mb-12">
 
-        {/* Carousel Container */}
-        <div className="absolute left-1/2 -translate-x-1/2 top-39 md:top-80 xl:top-125 z-30 w-full flex items-center justify-center h-[120px] md:h-[180px]">
-          {visibleMembers.map((member, idx) => (
-            <div
-              key={`${member.name}-${idx}`}
-              className="absolute will-change-transform"
-              style={{
-                ...getImageStyle(member.position),
-                transition: 'all 1000ms cubic-bezier(0.4, 0, 0.2, 1)',
-              }}
-            >
-              <div className={`relative transition-all duration-1000 ease-out ${member.position === 0 ? 'w-[80px] h-[80px] md:w-[120px] md:h-[120px] xl:w-[160px] xl:h-[160px]' : 'w-[60px] h-[60px] md:w-[70px] md:h-[70px] xl:w-[90px] xl:h-[90px]'}`}>
-                {/* Blue glow ring for center image */}
-                {member.position === 0 && (
-                  <>
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 blur-xl opacity-60 scale-110 transition-opacity duration-1000"></div>
-                    <div className="absolute inset-0 rounded-full border-3 border-blue-500 shadow-[0_0_30px_rgba(0,23,255,0.8)] transition-opacity duration-1000"></div>
-                  </>
-                )}
-                {/* Image container */}
-                <div className={`relative w-full h-full rounded-full overflow-hidden transition-all duration-1000 ${member.position === 0 ? 'border-3 border-blue-500' : 'border-2 border-blue-400/30'}`}>
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
+          <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+
+            <div>
+
+              <p className="mb-6 text-xs font-semibold uppercase tracking-[0.28em] text-white/40">
+                09 — Leadership
+              </p>
+
+              <h2 className="max-w-5xl text-[clamp(3rem,7vw,7rem)] font-semibold leading-[0.88] tracking-[-0.055em]">
+                People behind
+                <br />
+                <span className="text-white/35">
+                  the progress.
+                </span>
+              </h2>
+
             </div>
-          ))}
+
+            <p className="max-w-sm text-sm leading-6 text-white/45 lg:pb-2">
+              Meet the people bringing experience, expertise and
+              relationships together to create meaningful results.
+            </p>
+
+          </div>
+
         </div>
 
-        {/* Center member name display */}
-        <div className="flex flex-col w-[230px] md:w-[300px] items-center gap-[3px] absolute left-1/2 -translate-x-1/2 top-70 md:top-125 xl:top-180 z-40 flex-[0_0_auto]">
-          <div 
-            key={`name-${centerIndex}`}
-            className="relative self-stretch mt-[-1.00px] [font-family:'Aeonik_TRIAL-Bold',Helvetica] font-bold text-white text-sm md:text-lg text-center tracking-[-0.36px] leading-[18px] transition-all duration-500 ease-out animate-fade-in"
-          >
-            {centerMember.name}
-          </div>
-          <div 
-            key={`title-${centerIndex}`}
-            className="relative self-stretch [font-family:'Aeonik_TRIAL-Regular',Helvetica] font-normal text-[#ffffffa6] text-xs leading-[18px] text-center tracking-[0] transition-all duration-500 ease-out animate-fade-in"
-          >
-            {centerMember.title}
-          </div>
-        </div>
-    </div>
-  )
-}
+        {/* =====================================================
+            CIRCULAR TEAM AREA
+        ====================================================== */}
+        <div
+          className="relative mx-auto h-[680px] w-full max-w-[1200px] overflow-hidden sm:h-[760px] lg:h-[900px]"
+          
+        >
 
-export default Leadership
+          {/* Outer circle */}
+          <div className="absolute z-10 left-1/2 top-1/2 h-[500px] w-[500px] sm:h-[600px] sm:w-[600px] lg:h-[700px] lg:w-[700px]" />
+
+          {/* Inner circle */}
+          <div className="absolute left-1/2 top-1/2 h-[330px] w-[330px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/[0.06] sm:h-[400px] sm:w-[400px] lg:h-[470px] lg:w-[470px]" />
+
+          {/* Blue center atmosphere */}
+          <div className="absolute left-1/2 top-1/2 h-[260px] w-[260px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#003b96]/15 blur-[70px]" />
+
+          {/* =================================================
+              ROTATING TEAM ORBIT
+          ================================================= */}
+          <div
+            className="absolute left-1/2 top-1/2 h-[500px] w-[500px] sm:h-[600px] sm:w-[600px] lg:h-[700px] lg:w-[700px]"
+            style={{
+              transform: `translate(-50%, -50%) rotate(${
+                -activeIndex * (360 / teamMembers.length)
+              }deg)`,
+              transition:
+                "transform 1100ms cubic-bezier(0.22, 1, 0.36, 1)",
+            }}
+          >
+
+            {teamMembers.map((member, index) => {
+
+              const angle =
+                (index * 360) / teamMembers.length;
+
+              const isActive = index === activeIndex;
+
+              return (
+                <button
+                  key={member.name}
+                  type="button"
+                  onClick={() => setActiveIndex(index)}
+                  className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center"
+                  style={{
+                    transform: `rotate(${angle}deg) translateY(-350px) rotate(${
+                      -angle + activeIndex * (360 / teamMembers.length)
+                    }deg)`,
+                  }}
+                  aria-label={`View ${member.name}`}
+                >
+
+                  {/* Person image */}
+                  <div
+                    className={`relative overflow-hidden rounded-full transition-all duration-700 ${
+                      isActive
+                        ? "h-[92px] w-[92px] sm:h-[112px] sm:w-[112px] lg:h-[130px] lg:w-[130px]"
+                        : "h-[58px] w-[58px] opacity-50 sm:h-[68px] sm:w-[68px] lg:h-[76px] lg:w-[76px]"
+                    }`}
+                  >
+
+                    {/* Active glow */}
+                    {isActive && (
+                      <div className="absolute -inset-2 rounded-full bg-[#3764ff]/40 blur-xl" />
+                    )}
+
+                    <div
+                      className={`relative h-full w-full overflow-hidden rounded-full border ${
+                        isActive
+                          ? "border-[#3764ff] shadow-[0_0_35px_rgba(55,100,255,0.55)]"
+                          : "border-white/15"
+                      }`}
+                    >
+
+                      <img
+                        src={member.image}
+                        alt={member.name}
+                        className="h-full w-full object-cover object-top"
+                      />
+
+                    </div>
+
+                  </div>
+
+                </button>
+              );
+            })}
+
+          </div>
+
+          {/* =================================================
+              CENTER INFORMATION
+          ================================================= */}
+          <div className="absolute left-1/2 top-1/2 flex w-[260px] -translate-x-1/2 -translate-y-1/2 flex-col items-center text-center sm:w-[330px]">
+
+            {/* Center label */}
+            <p className="mb-5 text-[10px] uppercase tracking-[0.25em] text-[#6f8dff]">
+              {activeMember.title}
+            </p>
+
+            {/* Name */}
+            <h3
+              key={activeMember.name}
+              className="text-2xl font-medium leading-tight tracking-[-0.035em] sm:text-3xl lg:text-4xl"
+            >
+              {activeMember.name}
+            </h3>
+
+            {/* Divider */}
+            <div className="my-6 h-px w-16 bg-white/20" />
+
+            {/* Position counter */}
+            <p className="text-xs tracking-[0.18em] text-white/30">
+              {String(activeIndex + 1).padStart(2, "0")}{" "}
+              /{" "}
+              {String(teamMembers.length).padStart(2, "0")}
+            </p>
+
+          </div>
+
+          {/* =================================================
+              TOP LABEL
+          ================================================= */}
+          <div className="absolute left-1/2 top-3 -translate-x-1/2 text-center">
+
+            
+
+          </div>
+
+          {/* =================================================
+              BOTTOM LABEL
+          ================================================= */}
+          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 text-center">
+
+            <p className="text-[10px] uppercase tracking-[0.25em] text-white/25">
+              Leadership • Management • Advisors
+            </p>
+
+          </div>
+
+        </div>
+
+        {/* =====================================================
+            TEAM COUNTER
+        ====================================================== */}
+        <div className="mx-auto mt-2 max-w-[1200px] border-t border-white/10 pt-6">
+
+          <div className="flex items-center justify-between">
+
+            <div className="flex items-center gap-3">
+
+              <span className="h-1.5 w-1.5 rounded-full bg-[#3764ff]" />
+
+              <span className="text-xs uppercase tracking-[0.2em] text-white/30">
+                Our team
+              </span>
+
+            </div>
+
+            <span className="text-xs tracking-[0.18em] text-white/25">
+              {String(teamMembers.length).padStart(2, "0")} PEOPLE
+            </span>
+
+          </div>
+
+        </div>
+
+        {/* =====================================================
+            BOTTOM STATEMENT
+        ====================================================== */}
+        <div className="mt-20 border-t border-white/10 pt-10 lg:mt-28">
+
+          <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+
+            <div>
+
+              <p className="text-xs uppercase tracking-[0.2em] text-white/30">
+                One team
+              </p>
+
+              <p className="mt-4 max-w-4xl text-2xl font-medium leading-tight tracking-[-0.03em] sm:text-3xl lg:text-4xl">
+                Experience, relationships and
+                <br />
+                <span className="text-white/40">
+                  people that make things happen.
+                </span>
+              </p>
+
+            </div>
+
+            <a
+              href="/contact"
+              className="group inline-flex w-fit items-center gap-3 rounded-full bg-white px-6 py-4 text-sm font-semibold text-[#07111f] transition-all duration-300 hover:bg-[#003b96] hover:text-white"
+            >
+              Connect with us
+
+              <ArrowUpRight
+                size={18}
+                className="transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1"
+              />
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  );
+};
+
+export default Leadership;

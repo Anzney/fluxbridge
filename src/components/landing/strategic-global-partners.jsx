@@ -1,137 +1,179 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { ArrowUpRight } from "lucide-react";
 
-const partnerCategories = [
-  "Human Resources",
-  "Business Consulting",
-  "IT Consulting & Services",
-  "Learning & Development",
+const allPartners = [
+  "/picture1.png",
+  "/picture2.png",
+  "/picture3.png",
+  "/picture4.png",
+  "/picture5.png",
+
+  "/picture6.png",
+
+  "/picture7.png",
+  "/picture8.png",
+  "/picture9.png",
+  "/picture10.png",
+
+  "/picture11.png",
+  "/skillup.png",
+  "/picture12.png",
 ];
 
-// Map each category to its partner logos. Update these arrays as needed.
-const partnersByCategory = {
-  "Human Resources": [
-    "/group-13.png",
-    "/group-15.png",
-    "/group-16.png",
-    "/mask-group-6.png",
-    "/mask-group-7.png",
-  ],
-  "Business Consulting": ["/sammati_logo.png", "/baton.png"],
-  "IT Consulting & Services": ["anzney-logo.png","/aqm-logo.png", "/notion-logo.png", "/zi.png"],
-  "Learning & Development": ["/leoron.png", "/skillup.png", "/nse-logo.png"],
-};
-
 export default function StrategicGlobalPartners() {
-  const [selectedCategory, setSelectedCategory] = useState(
-    partnerCategories[0]
-  );
-  const partners = partnersByCategory[selectedCategory] || [];
+  // Duplicate the logos so the animation can loop smoothly
+  const marqueePartners = [...allPartners, ...allPartners];
+
   return (
-    <div className="mt-10 md:mt-16 lg:mt-20 z-10 flex flex-col items-center gap-8 md:gap-12 lg:gap-20 px-4 md:px-8 lg:px-0">
-      {/* Strategic Global Partners Title */}
-      <h1 className="text-2xl pb-4 sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl bg-gradient-to-r from-[rgb(55,100,255,1)] to-white bg-clip-text font-normal text-transparent text-center max-w-4xl">
-        Strategic Global Partners
-      </h1>
+    <section
+      id="clients"
+      className="relative overflow-hidden bg-[#07111f] text-white"
+    >
+      {/* Background atmosphere */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute left-[-10%] top-[20%] h-[500px] w-[500px] rounded-full bg-[#003b96]/10 blur-[180px]" />
 
-      {/* Partner Categories */}
-      <div className="relative w-full max-w-[1240px]">
-        {/* Background border */}
-        <div className="hidden lg:block w-full h-[60px] md:h-[72px] rounded-[30px] md:rounded-[50px] border border-solid border-[#d9d9d94c]" />
+        <div className="absolute right-[-10%] top-[45%] h-[500px] w-[500px] rounded-full bg-[#9e1b1e]/10 blur-[180px]" />
+      </div>
 
-        {/* Category buttons - Desktop Layout */}
-        <div className="hidden lg:flex absolute top-[7px] left-[7px] justify-between w-[calc(100%-14px)]">
-          {partnerCategories.map((category, index) => (
-            <Button
-              key={index}
-              onClick={() => setSelectedCategory(category)}
-              className={`flex-1 mx-1 h-[57px] ${
-                selectedCategory === category
-                  ? "bg-[#3764ff]"
-                  : "bg-[#ffffff03]"
-              } rounded-[50px] hover:bg-[#3764ff] transition-colors`}
-            >
-              <div className="[font-family:'Aeonik_TRIAL-Regular',Helvetica] font-normal text-white text-lg text-center tracking-[0] leading-[normal] whitespace-nowrap">
-                {category}
-              </div>
-            </Button>
-          ))}
-        </div>
+      <div className="relative z-10 mx-auto max-w-[1500px] px-6 py-24 sm:px-10 sm:py-32 lg:px-16 lg:py-40">
 
-        {/* Category buttons - Mobile/Tablet Layout */}
-        <div className="lg:hidden absolute top-[6px] left-[6px] w-[calc(100%-12px)] h-[calc(100%-12px)]">
-          <div className="grid grid-cols-2 gap-3 h-full p-2">
-            {partnerCategories.map((category, index) => (
-              <Button
-                key={index}
-                onClick={() => setSelectedCategory(category)}
-                className={`flex items-center justify-center h-full ${
-                  selectedCategory === category
-                    ? "bg-[#3764ff]"
-                    : "bg-transparent"
-                } rounded-[50px] hover:bg-[#3764ff] transition-colors`}
-              >
-                <div className="[font-family:'Aeonik_TRIAL-Regular',Helvetica] font-normal text-white text-xs sm:text-sm md:text-base text-center tracking-[0] leading-tight">
-                  {category}
-                </div>
-              </Button>
-            ))}
+        {/* HEADER */}
+        <div className="border-t border-white/10 pt-8">
+
+          <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+
+            <div>
+              <p className="mb-6 text-xs font-semibold uppercase tracking-[0.28em] text-white/35">
+                11 — Clients & Partners
+              </p>
+
+              <h2 className="max-w-5xl text-[clamp(3.2rem,7.5vw,7.5rem)] font-semibold leading-[0.84] tracking-[-0.06em]">
+                Strategic
+                <br />
+                <span className="text-white/35">
+                  Global Partners.
+                </span>
+              </h2>
+            </div>
+
+            <p className="max-w-sm text-sm leading-6 text-white/45 lg:pb-2 lg:text-right">
+              Building trusted relationships with organizations and
+              specialists across human resources, consulting, technology and
+              learning.
+            </p>
+
           </div>
         </div>
-      </div>
 
-      {/* Partner Logos */}
-      <div className="w-full max-w-[1150px] mt-24 md:mt-24 lg:mt-16">
-        {/* Desktop Layout - Single Row */}
-        <div className="hidden lg:flex gap-20 items-center  px-4">
-          {partners.map((partner, index) => (
-            <img
-              key={index}
-              className={`object-contain ${
-                index === 0
-                  ? "w-[185px] h-[66px]"
-                  : index === 1
-                  ? "w-[203px] h-[73px]"
-                  : index === 2
-                  ? "w-[214px] h-[54px]"
-                  : index === 3
-                  ? "w-[130px] h-[68px]"
-                  : index === 4
-                  ? "w-[89px] h-[89px]"
-                  : "w-[89px] h-[89px]"
-              }`}
-              alt={`Partner logo ${index + 1}`}
-              src={partner}
-              onError={(e) => {
-                console.log(`Failed to load partner image: ${partner}`);
-                e.target.style.display = "none";
-              }}
-            />
-          ))}
-        </div>
+        {/* PARTNER LOGOS */}
+        <div className="mt-20 lg:mt-28">
 
-        {/* Mobile Layout - Grid */}
-        <div className="lg:hidden grid grid-cols-2 sm:grid-cols-3 gap-4 md:gap-6 px-4">
-          {partners.map((partner, index) => (
-            <div
-              key={index}
-              className="flex justify-center items-center p-4 rounded-lg "
-            >
-              <img
-                className="object-contain max-w-full max-h-[60px] md:max-h-[80px]"
-                alt={`Partner logo ${index + 1}`}
-                src={partner}
-                onError={(e) => {
-                  console.log(`Failed to load partner image: ${partner}`);
-                  e.target.style.display = "none";
-                }}
-              />
+          <div className="mb-6 flex items-center justify-between border-t border-white/10 pt-6">
+            <div>
+              <p className="text-xs uppercase tracking-[0.22em] text-white/30">
+                Our Partners
+              </p>
+
+              <p className="mt-2 text-sm text-white/40">
+                A growing network of trusted organizations
+              </p>
             </div>
-          ))}
+
+            <span className="text-xs tracking-[0.18em] text-white/20">
+              {String(allPartners.length).padStart(2, "0")} PARTNERS
+            </span>
+          </div>
+
+          {/* MARQUEE */}
+          <div className="relative overflow-hidden rounded-[32px] border border-white/10 bg-white/[0.025] py-12 sm:py-16 lg:py-20">
+
+            {/* Left fade */}
+            <div className="pointer-events-none absolute left-0 top-0 z-20 h-full w-24 bg-gradient-to-r from-[#07111f] to-transparent sm:w-36 lg:w-48" />
+
+            {/* Right fade */}
+            <div className="pointer-events-none absolute right-0 top-0 z-20 h-full w-24 bg-gradient-to-l from-[#07111f] to-transparent sm:w-36 lg:w-48" />
+
+            <div className="flex w-max animate-partner-marquee">
+
+              {marqueePartners.map((partner, index) => (
+                <div
+                  key={`${partner}-${index}`}
+                  className="mx-5 flex h-[130px] w-[210px] shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.025] px-8 transition-all duration-500 hover:border-white/20 hover:bg-white/[0.06] sm:mx-7 sm:h-[150px] sm:w-[240px] lg:mx-8 lg:h-[170px] lg:w-[270px]"
+                >
+                  <img
+                    src={partner}
+                    alt={`FluxBridge partner ${index + 1}`}
+                    className="max-h-[90px] max-w-[200px] object-contain opacity-65 transition-all duration-500 hover:opacity-100 hover:grayscale-0"
+                    onError={(e) => {
+                      console.log(
+                        `Failed to load partner image: ${partner}`
+                      );
+                      e.currentTarget.style.display = "none";
+                    }}
+                  />
+                </div>
+              ))}
+
+            </div>
+          </div>
+
         </div>
+
+        {/* BOTTOM STATEMENT */}
+        <div className="mt-20 border-t border-white/10 pt-10 lg:mt-28">
+
+          <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+
+            <div>
+              <p className="text-xs uppercase tracking-[0.2em] text-white/30">
+                Built on relationships
+              </p>
+
+              <p className="mt-4 max-w-4xl text-2xl font-medium leading-tight tracking-[-0.03em] sm:text-3xl lg:text-4xl">
+                Strong partnerships.
+                <br />
+                <span className="text-white/40">
+                  Greater possibilities.
+                </span>
+              </p>
+            </div>
+
+            <a
+              href="/contact"
+              className="group inline-flex w-fit items-center gap-3 rounded-full bg-white px-6 py-4 text-sm font-semibold text-[#07111f] transition-all duration-300 hover:bg-[#003b96] hover:text-white"
+            >
+              Become a partner
+
+              <ArrowUpRight
+                size={18}
+                className="transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1"
+              />
+            </a>
+
+          </div>
+
+        </div>
+
       </div>
-    </div>
+
+      {/* MARQUEE ANIMATION */}
+      <style jsx>{`
+        @keyframes partner-marquee {
+          from {
+            transform: translateX(-50%);
+          }
+
+          to {
+            transform: translateX(0%);
+          }
+        }
+
+        .animate-partner-marquee {
+          animation: partner-marquee 35s linear infinite;
+        }
+      `}</style>
+    </section>
   );
 }

@@ -1,5 +1,7 @@
-'use client';
-import React, { useEffect, useRef, useState } from "react";
+"use client";
+
+import React, { useState } from "react";
+import { ArrowUpRight } from "lucide-react";
 
 const transformationAreas = [
   "Business / Strategy Consulting",
@@ -7,199 +9,358 @@ const transformationAreas = [
   "Strategic Alliances & Startups",
 ];
 
-const businessConsultingServices = [
-  {
-    title: "Organisational Transformation",
-    description: "People, processes, and technology integration",
+const contentByArea = {
+  "Business / Strategy Consulting": {
+    short: "01",
+    title: "Business / Strategy Consulting",
+    intro:
+      "Helping organizations navigate transformation through people, processes and technology.",
+    services: [
+      {
+        title: "Organisational Transformation",
+        description: "People, processes, and technology integration",
+      },
+      {
+        title: "Strategy Development",
+        description: "Designing and executing strategies",
+      },
+      {
+        title: "Market & Financial Analysis",
+        description: "Feasibility studies and financial modelling",
+      },
+      {
+        title: "Business Restructuring",
+        description:
+          "Turnaround, expansion, and profitability improvement",
+      },
+    ],
+    image: "/Rectangle82.png",
+    imageAlt: "Business and Strategy Consulting",
   },
-  {
-    title: "Strategy Development",
-    description: "Designing and executing strategies",
-  },
-  {
-    title: "Market & Financial Analysis",
-    description: "Feasibility studies and financial modelling",
-  },
-  {
-    title: "Business Restructuring",
-    description: "Turnaround, expansion, and profitability improvement",
-  },
-];
 
-const StrategyBusiness = () => {
-  const [selectedArea, setSelectedArea] =useState(
+  "Technology & Digital": {
+    short: "02",
+    title: "Technology & Digital",
+    intro:
+      "Technology-led solutions that improve efficiency, insight and digital capability.",
+    services: [
+      {
+        title: "Digital Transformation",
+        description:
+          "Assessment, strategy roadmap and implementation",
+      },
+      {
+        title: "Data Analytics",
+        description:
+          "Leveraging AI and machine learning for insights",
+      },
+      {
+        title: "Process Automation (RPACoE)",
+        description:
+          "Driving efficiency though automation excellence",
+      },
+      {
+        title: "Technology & Devlopment",
+        description:
+          "IT Solutions, PMO, and mobile/web applications",
+      },
+    ],
+    image: "/Technology.png",
+    imageAlt: "Technology and Digital",
+  },
+
+  "Strategic Alliances & Startups": {
+    short: "03",
+    title: "Strategic Alliances & Startups",
+    intro:
+      "Building partnerships and supporting businesses from concept creation through sustainable growth.",
+    services: [
+      {
+        title: "Joint Ventures & Alliances",
+        description:
+          "Partnership with businesses and family offices",
+      },
+      {
+        title: "Project Development",
+        description:
+          "From concept creation to final execution",
+      },
+      {
+        title: "Start-up Support",
+        description:
+          "Advisory, strategy, and growth enablement",
+      },
+      {
+        title: "Sustainable Growth",
+        description:
+          "Long-term scaling and value creation initiatives",
+      },
+    ],
+    image: "/Teamco.jpg",
+    imageAlt: "Strategic Alliances and Startups",
+  },
+};
+
+export default function StrategyBusiness() {
+  const [selectedArea, setSelectedArea] = useState(
     transformationAreas[0]
   );
 
-  // Refs to enable auto-centering of active tab on small screens
-  const tabsContainerRef = useRef(null);
-  const mainPanelRef = useRef(null);
-  const tabRefs = useRef({});
-
-  useEffect(() => {
-    // Only auto-center on small screens
-    if (typeof window === 'undefined' || window.innerWidth >= 640) return;
-    const container = tabsContainerRef.current;
-    const panel = mainPanelRef.current;
-    const activeEl = tabRefs.current[selectedArea];
-    if (!container || !panel || !activeEl) return;
-
-    const centerSelected = () => {
-      const panelRect = panel.getBoundingClientRect();
-      const panelStyle = window.getComputedStyle(panel);
-      const pl = parseFloat(panelStyle.paddingLeft) || 0;
-      const pr = parseFloat(panelStyle.paddingRight) || 0;
-      const panelCenterX = panelRect.left + pl + (panelRect.width - pl - pr) / 2;
-
-      const activeRect = activeEl.getBoundingClientRect();
-      const activeCenterX = activeRect.left + activeRect.width / 2;
-
-      const deltaX = activeCenterX - panelCenterX;
-      const maxScroll = container.scrollWidth - container.clientWidth;
-      const target = Math.min(maxScroll, Math.max(0, container.scrollLeft + deltaX));
-      container.scrollTo({ left: target, behavior: 'smooth' });
-    };
-
-    // Defer to next paint and retry after small delay for layout shifts
-    const rafId = requestAnimationFrame(() => {
-      centerSelected();
-      setTimeout(() => {
-        requestAnimationFrame(centerSelected);
-      }, 150);
-    });
-
-    return () => cancelAnimationFrame(rafId);
-  }, [selectedArea]);
-
-  const contentByArea = {
-    "Business / Strategy Consulting": {
-      titleLines: ["Business / Strategy Consulting"],
-      services: businessConsultingServices,
-      image:
-        "/Rectangle82.png",
-      imageAlt: "Workflow Strategy",
-    },
-    "Technology & Digital": {
-      titleLines: ["Technology & ", "Digital"],
-      services: [
-        {
-          title: "Digital Transformation",
-          description: "Assessment, strategy roadmap and implementation",
-        },
-        {
-          title: "Data Analytics",
-          description: "Leveraging AI and machine learning for insights",
-        },
-        {
-          title: "Process Automation (RPACoE)",
-          description: "Driving efficiency though automation excellence",
-        },
-        {
-          title: "Technology & Devlopment",
-          description: "IT Solutions , PMO , and mobile/web applications",
-        },
-      ],
-      image:
-        "/Technology.png",
-      imageAlt: "Technology & Digital",
-    },
-    "Strategic Alliances & Startups": {
-      titleLines: ["Strategic Alliances & ", "Startups"],
-      services: [
-        {
-          title: "Joint Ventures & Alliances",
-          description: "Partnership with businesses and family offices",
-        },
-        {
-          title: "Project Development",
-          description: "From concept creation to final execution",
-        },
-        {
-          title: "Start-up Support",
-          description: "Advisory, strategy, and growth enablement",
-        },
-        {
-          title: "Sustainable Growth",
-          description: "Long-term scaling and value creation initiatives",
-        },
-      ],
-      image:
-        "/Teamco.jpg",
-      imageAlt: "Alliances & Startups",
-    },
-  };
-
   const active = contentByArea[selectedArea];
-  const topRounded =
-    selectedArea === "Business / Strategy Consulting"
-      ? "rounded-tr-3xl"
-      : selectedArea === "Technology & Digital"
-      ? "rounded-tl-3xl rounded-tr-3xl"
-      : "rounded-tl-3xl";
 
   return (
-    <div className="mt-50 mb-15 z-5 flex flex-col items-center ">
-      {/* Section Title */}
-      <h1 className="text-3xl md:text-4xl lg:text-5xl mb-6 md:mb-8 lg:mb-10 bg-gradient-to-r from-[rgb(55,100,255,1)] to-white bg-clip-text font-normal text-transparent text-center pb-1">
-        Strategy & Business
-        <br />
-        Transformation
-      </h1>
+    <section className="relative overflow-hidden bg-[#07111f] text-white">
 
-      {/* Tabs */}
-      <div ref={tabsContainerRef} className="flex px-[34px] md:pl-0 md:pr-0 justify-start sm:justify-between items-center sm:max-w-[380px] md:max-w-none md:w-[700px] lg:w-[927px] xl:w-[1050px] lg:gap-3 mr-0 overflow-x-auto relative scrollbar-hide flex-nowrap snap-x snap-mandatory ">
-        {transformationAreas.map((area) => {
-          const isActive = selectedArea === area;
-          return (
-            <button
-              key={area}
-              type="button"
-              ref={(el) => { if (el) tabRefs.current[area] = el; }}
-              onClick={() => setSelectedArea(area)}
-              className={`flex-none snap-center max-w-[200px] md:max-w-[250px] lg:max-w-none overflow-hidden sm:text-sm md:text-base lg:text-lg leading-normal transition-colors rounded-2xl py-3 md:py-4 px-4 md:px-6 lg:px-10 cursor-pointer ${
-                isActive
-                  ? "text-[#4f76ff] sm:min-h-[72px] h-[80px] md:min-h-none md:h-[80px] lg:h-[70px] rounded-b-none rounded-t-3xl border-0 bg-white/10 backdrop-blur-lg scrollbar-hide"
-                  : "text-white/90  hover:text-white"
-              }`}
-            >
-              {area}
-            </button>
-          );
-        })}
-      </div>
+      {/* SAME BACKGROUND AS OTHER SECTIONS */}
+      <div
+        className="absolute inset-0 bg-cover bg-center opacity-20"
+        style={{
+          backgroundImage: "url('/hero-recruitment.jpg')",
+        }}
+      />
 
-      {/* Main Content Panel - only selected tab content */}
-      <div ref={mainPanelRef} className={` items-center w-[360px] md:max-w-none md:w-[700px] lg:w-[927px] xl:w-[1050px] rounded-b-3xl ${topRounded} bg-white/10 backdrop-blur-lg p-6 md:p-8 lg:p-10 flex flex-col lg:flex-row items-stretch lg:items-center`}>
-        {/* Left: Text */}
-        <div className=" relative md:flex-1 flex flex-col  sm:gap-4 md:gap-4 lg:gap-3  xl:gap-3">
-          <div className="font-semibold text-white tracking-normal sm:tracking-normal leading-normal sm:leading-normal sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl  md:leading-[40px] lg:leading-[46px]">
-            {active.titleLines}
+      {/* BRAND GRADIENTS */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_20%,rgba(0,59,150,0.28),transparent_35%),radial-gradient(circle_at_10%_80%,rgba(158,27,30,0.20),transparent_30%)]" />
+
+      {/* ATMOSPHERIC GLOW */}
+      <div className="pointer-events-none absolute right-[-150px] top-[35%] h-[500px] w-[500px] rounded-full bg-[#003b96]/10 blur-[160px]" />
+
+      <div className="relative z-10 mx-auto max-w-[1500px] px-6 py-24 sm:px-10 sm:py-32 lg:px-16 lg:py-40">
+
+        {/* HEADER */}
+        <div className="mb-16 flex flex-col gap-8 lg:mb-20 lg:flex-row lg:items-end lg:justify-between">
+
+          <div>
+            <p className="mb-6 text-xs font-semibold uppercase tracking-[0.28em] text-white/50">
+              08 — Transformation
+            </p>
+
+            <h2 className="max-w-5xl text-[clamp(3rem,7vw,7rem)] font-semibold leading-[0.88] tracking-[-0.055em]">
+              Strategy &
+              <br />
+              <span className="text-white/40">
+                Business Transformation.
+              </span>
+            </h2>
           </div>
-          <div className="flex flex-col items-start md:gap-2 lg:gap-2 xl:gap-2 text-white mt-6 md:mt-0">
-            {active.services.map((service, index) => (
-              <div key={index} className="flex flex-col items-start w-full">
-                <div className="font-bold text-[#4f76ff] tracking-normal sm:tracking-normal md:text-lg lg:text-xl leading-normal">
-                  {service.title}
-                </div>
-                <div className=" text-sm md:text-base tracking-normal sm:tracking-normal leading-relaxed sm:leading-relaxed">
-                  {service.description}
-                </div>
-              </div>
-            ))}
-          </div>
+
+          <p className="max-w-sm text-sm leading-6 text-white/50 lg:pb-2">
+            Strategic advisory, digital transformation and partnership
+            solutions designed to help organizations evolve and create
+            sustainable value.
+          </p>
+
         </div>
 
-        {/* Right: Image */}
-       <div className="mt-6 md:mt-8 lg:mt-0">
-         <img
-          className="w-full h-[200px] lg:w-[460px] xl:w-[520px] md:h-[280px] lg:h-[340px] xl:h-[320px] rounded-[18px] object-cover"
-          alt={active.imageAlt}
-          src={active.image}
-        />
-       </div>
-      </div>
-    </div>
-  );
-};
+        {/* MAIN TILE */}
+        <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.035] backdrop-blur-md">
 
-export default StrategyBusiness;
+          {/* =========================================
+              TOP SELECTABLE TOPICS
+          ========================================= */}
+          <div className="grid border-b border-white/10 md:grid-cols-3">
+
+            {transformationAreas.map((area, index) => {
+              const isActive = selectedArea === area;
+
+              return (
+                <button
+                  key={area}
+                  type="button"
+                  onClick={() => setSelectedArea(area)}
+                  className={`group relative flex min-h-[105px] items-center justify-between gap-4 border-b border-white/10 px-6 py-6 text-left transition-all duration-500 last:border-b-0 md:min-h-[125px] md:border-b-0 md:border-r md:px-8 md:last:border-r-0 lg:px-10 ${
+                    isActive
+                      ? "bg-white/[0.08] text-white"
+                      : "text-white/40 hover:bg-white/[0.04] hover:text-white/80"
+                  }`}
+                >
+
+                  {/* Active blue line */}
+                  <span
+                    className={`absolute bottom-0 left-0 h-[2px] bg-[#3764ff] transition-all duration-500 ${
+                      isActive ? "w-full" : "w-0 group-hover:w-full"
+                    }`}
+                  />
+
+                  <div className="flex items-center gap-4">
+
+                    <span
+                      className={`text-xs tracking-[0.2em] ${
+                        isActive
+                          ? "text-[#6f8dff]"
+                          : "text-white/20"
+                      }`}
+                    >
+                      0{index + 1}
+                    </span>
+
+                    <span className="max-w-[260px] text-sm font-semibold leading-5 sm:text-base lg:text-lg">
+                      {area}
+                    </span>
+
+                  </div>
+
+                  <div
+                    className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full border transition-all duration-500 ${
+                      isActive
+                        ? "border-white/30 bg-white text-[#07111f]"
+                        : "border-white/10 text-white/20 group-hover:border-white/25 group-hover:text-white"
+                    }`}
+                  >
+                    <ArrowUpRight
+                      size={16}
+                      className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                    />
+                  </div>
+
+                </button>
+              );
+            })}
+
+          </div>
+
+          {/* =========================================
+              SELECTED CONTENT
+          ========================================= */}
+          <div className="grid lg:grid-cols-[0.95fr_1.05fr]">
+
+            {/* LEFT CONTENT */}
+            <div className="p-7 sm:p-10 lg:p-14">
+
+              {/* Small header */}
+              <div className="flex items-start justify-between">
+
+                <span className="text-xs font-medium tracking-[0.2em] text-white/30">
+                  {active.short} / 03
+                </span>
+
+                <span className="text-xs uppercase tracking-[0.18em] text-white/25">
+                  Selected
+                </span>
+
+              </div>
+
+              {/* Title */}
+              <h3 className="mt-14 max-w-xl text-3xl font-medium leading-[1.05] tracking-[-0.035em] sm:text-4xl lg:text-5xl">
+                {active.title}
+              </h3>
+
+              {/* Intro */}
+              <p className="mt-6 max-w-lg text-sm leading-6 text-white/45 sm:text-base">
+                {active.intro}
+              </p>
+
+              {/* Services */}
+              <div className="mt-10 border-t border-white/10">
+
+                {active.services.map((service, index) => (
+                  <div
+                    key={index}
+                    className="group border-b border-white/10 py-5"
+                  >
+
+                    <div className="flex items-start gap-4">
+
+                      <span className="mt-1 text-xs tracking-[0.15em] text-white/20">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+
+                      <div>
+
+                        <h4 className="text-base font-semibold text-white/80 transition-colors duration-300 group-hover:text-white sm:text-lg">
+                          {service.title}
+                        </h4>
+
+                        <p className="mt-1 text-sm leading-5 text-white/40">
+                          {service.description}
+                        </p>
+
+                      </div>
+
+                    </div>
+
+                  </div>
+                ))}
+
+              </div>
+
+            </div>
+
+            {/* RIGHT IMAGE */}
+            <div className="relative min-h-[350px] overflow-hidden border-t border-white/10 lg:min-h-[650px] lg:border-l lg:border-t-0">
+
+              <img
+                src={active.image}
+                alt={active.imageAlt}
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+              />
+
+              {/* Image overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#07111f]/85 via-[#07111f]/10 to-transparent" />
+
+              {/* Image label */}
+              <div className="absolute bottom-7 left-7 right-7 flex items-end justify-between sm:bottom-10 sm:left-10 sm:right-10">
+
+                <div>
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-white/50">
+                    FluxBridge
+                  </p>
+
+                  <p className="mt-2 text-lg font-medium text-white">
+                    {active.title}
+                  </p>
+                </div>
+
+                <div className="flex h-11 w-11 items-center justify-center rounded-full border border-white/25 bg-white/10 backdrop-blur-md">
+                  <ArrowUpRight size={18} />
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        {/* BOTTOM STATEMENT */}
+        <div className="mt-20 border-t border-white/15 pt-10 lg:mt-28">
+
+          <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+
+            <div>
+
+              <p className="text-xs uppercase tracking-[0.2em] text-white/30">
+                Beyond recruitment
+              </p>
+
+              <p className="mt-4 max-w-4xl text-2xl font-medium leading-tight tracking-[-0.03em] sm:text-3xl lg:text-4xl">
+                Transform the way your
+                <br />
+                <span className="text-white/40">
+                  organization moves forward.
+                </span>
+              </p>
+
+            </div>
+
+            <a
+              href="/contact"
+              className="group inline-flex w-fit items-center gap-3 rounded-full bg-white px-6 py-4 text-sm font-semibold text-[#07111f] transition-all duration-300 hover:bg-[#003b96] hover:text-white"
+            >
+              Discuss your transformation
+
+              <ArrowUpRight
+                size={18}
+                className="transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1"
+              />
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  );
+}

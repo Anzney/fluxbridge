@@ -1,18 +1,20 @@
-import Image from 'next/image';
-import React from 'react'
+"use client";
+
+import React from "react";
+import { ArrowUpRight } from "lucide-react";
 
 const deliveryMethods = [
   {
     icon: "Mask-group-4.png",
-    title: "Live In Person\nTraining",
+    title: "Live In Person Training",
   },
   {
     icon: "Mask-group-5.png",
-    title: "Live Virtual\nTraining",
+    title: "Live Virtual Training",
   },
   {
     icon: "Mask-group-1.png",
-    title: "Self Paced E-\nlearning (LMS/LXP)",
+    title: "Self Paced E-learning (LMS/LXP)",
   },
   {
     icon: "Mask-group-2.png",
@@ -20,77 +22,150 @@ const deliveryMethods = [
   },
   {
     icon: "Mask-group-3.png",
-    title: "Simulations & AI\nbased learning",
+    title: "Simulations & AI based learning",
   },
 ];
 
-const DeliverySection = () => {
+export default function DeliverySection() {
   return (
-    <div className="relative mt-40 flex items-center flex-col justify-center gap-8 py-24 md:py-28 lg:py-32"
-      style={{
-        backgroundImage: 'url(/Group.png)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
-      }}
-    > 
-      
-      <div className="bg-gradient-to-r from-[rgb(55,100,255,1)] to-white bg-clip-text  font-normal text-transparent text-4xl lg:text-5xl xl:text-[56px] text-center mb-20">
-        Omni-Channel Delivery
-      </div>
+    <section className="relative overflow-hidden bg-[#07111f] text-white">
 
-      {/* Glow accents preserved, but without interfering with layout */}
-      <div className="pointer-events-none absolute -left-32 top-10 w-[405px] h-[685px] bg-[#0017ff] rounded-[202.31px/342.31px] blur-[397px] opacity-60" />
-      <div className="pointer-events-none absolute -right-32 bottom-10 w-[405px] h-[685px] bg-[#0017ff] rounded-[202.31px/342.31px] blur-[397px] opacity-60" />
+      {/* SAME BACKGROUND AS SERVICES */}
+      <div
+        className="absolute inset-0 bg-cover bg-center opacity-20"
+        style={{
+          backgroundImage: "url('/hero-recruitment.jpg')",
+        }}
+      />
 
-      {/* Responsive grid of circular items */}
-      <div className="w-full max-w-7xl px-4 md:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-10 sm:gap-8 place-items-center">
+      {/* SAME BRAND GRADIENTS AS SERVICES */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_20%,rgba(0,59,150,0.28),transparent_35%),radial-gradient(circle_at_10%_80%,rgba(158,27,30,0.20),transparent_30%)]" />
+
+      {/* Large atmospheric glow */}
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#003b96]/10 blur-[160px]" />
+
+      <div className="relative z-10 mx-auto max-w-[1500px] px-6 py-24 sm:px-10 sm:py-32 lg:px-16 lg:py-40">
+
+        {/* HEADER */}
+        <div className="mb-20 flex flex-col gap-8 lg:mb-28 lg:flex-row lg:items-end lg:justify-between">
+
+          <div>
+            <p className="mb-6 text-xs font-semibold uppercase tracking-[0.28em] text-white/50">
+              07 — Delivery
+            </p>
+
+            <h2 className="max-w-5xl text-[clamp(3rem,7vw,7rem)] font-semibold leading-[0.88] tracking-[-0.055em]">
+              Omni-channel
+              <br />
+              <span className="text-white/40">
+                learning delivery.
+              </span>
+            </h2>
+          </div>
+
+          <p className="max-w-sm text-sm leading-6 text-white/50 lg:pb-2">
+            Flexible learning experiences delivered through multiple
+            channels to meet different learner needs and organizational
+            requirements.
+          </p>
+
+        </div>
+
+        {/* DELIVERY METHODS */}
+        <div className="grid border-l border-t border-white/10 sm:grid-cols-2 lg:grid-cols-5">
+
           {deliveryMethods.map((method, index) => (
             <div
               key={index}
-              className={`${index % 2 === 1 ? 'md:-translate-y-6 lg:-translate-y-16' : ''} flex flex-col items-center text-center gap-4 transition-transform`}
+              className="group relative min-h-[330px] border-b border-r border-white/10 bg-[#07111f]/70 p-7 transition-all duration-500 hover:bg-[#0b1c35] sm:min-h-[360px] lg:min-h-[390px]"
             >
-              <div className="relative">
-                {/* Outer blue gradient ring */}
-                <div className="bg-gradient-to-b from-[#1E40FF] to-[#60A5FA] p-3 rounded-full">
-                  {/* Inner white circle */}
-                  <div className="bg-white rounded-full flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 shadow-xl">
-                    <img
-                      alt={method.title}
-                      src={`/${method.icon}`}
-                      className="w-8 h-8 sm:w-10 sm:h-10 md:w-18 md:h-18"
-                    />
-                  </div>
+
+              {/* Number + Arrow */}
+              <div className="flex items-start justify-between">
+
+                <span className="text-xs font-medium tracking-[0.2em] text-white/25">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+
+                <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-white/30 transition-all duration-500 group-hover:border-white/30 group-hover:bg-white group-hover:text-[#07111f]">
+                  <ArrowUpRight
+                    size={17}
+                    className="transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  />
                 </div>
-                {/* Triangle pointer to text below */}
-                <svg
-                  className="absolute left-1/2 -translate-x-1/2 -bottom-3 md:-bottom-3.5"
-                  width="22"
-                  height="14"
-                  viewBox="0 0 22 14"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <defs>
-                    <linearGradient id={`circlePointerGrad-${index}`} x1="0" y1="0" x2="0" y2="14" gradientUnits="userSpaceOnUse">
-                      <stop stopColor="#1E40FF" />
-                      <stop offset="1" stopColor="#60A5FA" />
-                    </linearGradient>
-                  </defs>
-                  <path d="M11 14 L0 0 L22 0 Z" fill={`url(#circlePointerGrad-${index})`} />
-                </svg>
+
               </div>
-              <div className="text-white text-sm sm:text-base md:text-lg lg:text-xl leading-snug whitespace-pre-line">
-                {method.title}
+
+              {/* Icon */}
+              <div className="mt-14 flex h-28 w-28 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] transition-all duration-500 group-hover:scale-105 group-hover:border-[#003b96]/70 group-hover:bg-[#003b96]/20">
+
+                <img
+                  src={`/${method.icon}`}
+                  alt={method.title}
+                  className="h-14 w-14 object-contain opacity-75 transition-all duration-500 group-hover:opacity-100"
+                />
+
               </div>
+
+              {/* Title */}
+              <div className="absolute bottom-8 left-7 right-7">
+
+                <p className="mb-3 text-[10px] uppercase tracking-[0.2em] text-white/30">
+                  Delivery Method
+                </p>
+
+                <h3 className="max-w-[220px] text-lg font-medium leading-6 tracking-[-0.02em] text-white/80 transition-colors duration-500 group-hover:text-white">
+                  {method.title}
+                </h3>
+
+              </div>
+
+              {/* Bottom hover line */}
+              <div className="absolute bottom-0 left-7 right-7 h-px bg-white/10 transition-all duration-500 group-hover:bg-[#003b96]" />
+
             </div>
           ))}
+
         </div>
+
+        {/* FEATURE STATEMENT */}
+        <div className="mt-20 border-t border-white/15 pt-10 lg:mt-28">
+
+          <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
+
+            <div>
+              <p className="text-xs uppercase tracking-[0.2em] text-white/30">
+                Designed for flexibility
+              </p>
+
+              <p className="mt-4 max-w-4xl text-2xl font-medium leading-tight tracking-[-0.03em] sm:text-3xl lg:text-4xl">
+                One learning strategy.
+                <br />
+                <span className="text-white/40">
+                  Multiple ways to experience it.
+                </span>
+              </p>
+            </div>
+
+            <div className="lg:flex lg:justify-end">
+              <a
+                href="/contact"
+                className="group inline-flex w-fit items-center gap-3 rounded-full bg-white px-6 py-4 text-sm font-semibold text-[#07111f] transition-all duration-300 hover:bg-[#003b96] hover:text-white"
+              >
+                Discuss your learning needs
+
+                <ArrowUpRight
+                  size={18}
+                  className="transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1"
+                />
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+
       </div>
-
-    </div>
-  )
+    </section>
+  );
 }
-
-export default DeliverySection

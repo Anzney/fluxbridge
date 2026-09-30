@@ -1,124 +1,158 @@
 "use client";
-import { motion } from "motion/react";
-import Image from "next/image";
 
-const About = () => {
+import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
+import React from "react";
+
+
+export default function About() {
   return (
-    <div
-      className="w-full relative py-8 sm:py-10 md:py-12 lg:py-10"
-    > 
-    <img
-      className="absolute rotate-180 top-0 left-0 w-screen opacity-80 sm:opacity-100"
-      alt="Group"
-      src="/Group.png"
-    />
+    <section
+      id="about"
+      className="relative overflow-hidden bg-[#07111f] text-white"
+    >
+      {/* Same background as Hero */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: "url('/hero-recruitment.jpg')",
+        }}
+      />
 
-      <div className="flex items-center justify-center px-4 sm:px-6 md:px-8 py-12 sm:py-14 md:py-16 lg:py-0 h-full relative z-20">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 xl:gap-20 ">
-          {/* Left Content */}
-          <div className="z-10 space-y-8">
-            <motion.h2
-              className="text-5xl lg:text-6xl font-thin text-white leading-tight"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            >
-              About Flux Bridge
-            </motion.h2>
+      {/* Same cinematic overlay */}
+      <div className="absolute inset-0 bg-black/60" />
 
-            <motion.div
-              className="space-y-6 text-white/90"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <p className="text-lg leading-relaxed">
-                Founded in 2017 and headquartered in Riyadh, KSA, Flux Bridge is a global talent 
-                solutions firm connecting exceptional talent with opportunity. With 6 global offices and 
-                a 30+ member core team, we've served 100+ clients across 16 industries and 14 
-                countries, placing 100+ C-level and management roles. Our track record includes 50+ 
-                strategic assignments, 600+ trainers, 100+ leaders coached, and 1M+ assessments 
-                delivered for 140 roles with 85% accuracy. With a 24-day average recruitment lead time, 
-                we combine strategic planning and speed to deliver lasting organizational impact.
-              </p>
-            </motion.div>
+      {/* Same FluxBridge brand glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_35%,rgba(0,59,150,0.30),transparent_35%),radial-gradient(circle_at_20%_80%,rgba(158,27,30,0.20),transparent_30%)]" />
 
-            <motion.div
-              className="space-y-6"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <div>
-                <h3 className="text-blue-400 font-semibold text-lg mb-2 uppercase tracking-tight">
-                  OUR VISION & MISSION
-                </h3>
-                <ul className="space-y-3 text-white/90">
-                  <li className="flex items-start">
-                    <span className="text-blue-400 mr-3 mt-1">•</span>
-                    <span>By 2030, we aim to lead in Human Capital Advisory with global solutions and local talent.</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-blue-400 mr-3 mt-1">•</span>
-                    <span>Redefining Human Resources as a strategic catalyst for organisational potential and success.</span>
-                  </li>
-                </ul>
-              </div>
+      {/* Content */}
+      <div className="relative z-10 mx-auto max-w-[1500px] px-6 py-24 sm:px-10 sm:py-32 lg:px-16 lg:py-40">
 
-              <div>
-                <h3 className="text-blue-400 font-semibold text-lg mb-2 uppercase tracking-tight">
-                  OUR VALUES
-                </h3>
-                <ul className="space-y-3 text-white/90">
-                  <li className="flex items-start">
-                    <span className="text-blue-400 mr-3 mt-1">•</span>
-                    <span><strong>Customer Focus</strong> Dedicated to client success</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-blue-400 mr-3 mt-1">•</span>
-                    <span><strong>Integrity</strong> Upholding honesty and ethics</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-blue-400 mr-3 mt-1">•</span>
-                    <span><strong>Excellence</strong> Striving for superior quality</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-blue-400 mr-3 mt-1">•</span>
-                    <span><strong>Objectivity</strong> Ensuring fair, balanced judgment</span>
-                  </li>
-                </ul>
-              </div>
-            </motion.div>
+        {/* Heading */}
+        <div className="mb-20 flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
+          
+          <div>
+            <p className="mb-6 text-xs font-semibold uppercase tracking-[0.28em] text-white/60">
+              01 — About FluxBridge
+            </p>
+
+            <h2 className="max-w-5xl text-[clamp(3rem,6vw,6.5rem)] font-semibold leading-[0.9] tracking-[-0.05em]">
+              Connecting
+              <br />
+              <span className="text-white/70">people</span> with
+              <br />
+              <span className="text-white">possibility.</span>
+            </h2>
           </div>
 
-          {/* Right Image */}
-          <motion.div
-            className="z-10 flex mt-8 lg:mt-0 min-h-[400px] md:min-h-[500px] "
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <div className="relative w-full h-full">
-              <div className="absolute top-[calc(50%-12px)] left-[calc(50%-12px)] md:top-[calc(50%-25px)] md:left-[calc(50%-20px)] -translate-x-1/2 -translate-y-1/2 w-[300px] h-[360px] md:w-[380px] md:h-[450px] xl:w-[487px] xl:h-[574px] rounded-3xl md:rounded-[50px] border border-solid border-[#3764ff]" />
-                <img
-                  src="https://c.animaapp.com/mfvdxb8gInTGFO/img/rectangle-2.svg"
-                  alt="Professional woman working"
-                  width={400}
-                  height={500}
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[400px] md:w-[380px] md:h-[480px] xl:w-[490px] xl:h-[585px] rounded-lg"
-                  priority
-                />
-             
+          <p className="max-w-sm text-sm leading-6 text-white/60 lg:pt-12">
+            A strategic HR partner helping organizations identify,
+            attract, develop and retain the talent they need to build
+            their future.
+          </p>
+        </div>
+
+        {/* Main content */}
+        <div className="grid gap-16 lg:grid-cols-[1fr_0.9fr] lg:items-center">
+
+          {/* Left text */}
+          <div>
+            <p className="max-w-3xl text-xl font-medium leading-8 sm:text-2xl lg:text-3xl lg:leading-10">
+              FluxBridge is a one-stop HR solutions partner delivering
+              integrated services across recruitment, assessment,
+              consulting, outsourcing, HR digital and workforce
+              management.
+            </p>
+
+            <p className="mt-8 max-w-xl text-base leading-7 text-white/60">
+              We combine industry knowledge, technology and a
+              people-first approach to help organizations build
+              stronger teams and create sustainable workforce
+              solutions.
+            </p>
+
+            <Link
+              href="#services"
+              className="group mt-10 inline-flex items-center gap-3 border-b border-white/50 pb-2 text-sm font-semibold text-white transition-colors hover:border-white"
+            >
+              Discover our capabilities
+              <ArrowUpRight
+                size={17}
+                className="transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1"
+              />
+            </Link>
+          </div>
+
+          {/* Image card using SAME hero image */}
+          <div className="group relative overflow-hidden">
+            <div className="aspect-[4/5] overflow-hidden border border-white/10 bg-black/20 backdrop-blur-sm">
+              <img
+                src="/hero-recruitment.jpg"
+                alt="FluxBridge corporate environment"
+                className="h-full w-full object-cover opacity-80 transition-transform duration-700 group-hover:scale-105"
+              />
+
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+
+              <div className="absolute bottom-6 left-6">
+                <p className="text-xs uppercase tracking-[0.2em] text-white/60">
+                  FluxBridge
+                </p>
+                <p className="mt-2 text-lg font-medium">
+                  Human Capital • GCC
+                </p>
+              </div>
             </div>
-          </motion.div>
+          </div>
+        </div>
+
+        {/* Statistics */}
+        <div className="mt-24 border-t border-white/20 pt-10 lg:mt-32">
+          <div className="grid grid-cols-2 gap-y-12 lg:grid-cols-4 lg:gap-0">
+
+            <div className="lg:border-r lg:border-white/15 lg:px-8 lg:first:pl-0">
+              <p className="text-[clamp(2.5rem,5vw,5rem)] font-semibold leading-none tracking-[-0.05em]">
+                15+
+              </p>
+
+              <p className="mt-3 text-xs uppercase tracking-[0.18em] text-white/50">
+                Years of Experience
+              </p>
+            </div>
+
+            <div className="lg:border-r lg:border-white/15 lg:px-8">
+              <p className="text-[clamp(2.5rem,5vw,5rem)] font-semibold leading-none tracking-[-0.05em]">
+                20+
+              </p>
+
+              <p className="mt-3 text-xs uppercase tracking-[0.18em] text-white/50">
+                Countries Served
+              </p>
+            </div>
+
+            <div className="lg:border-r lg:border-white/15 lg:px-8">
+              <p className="text-[clamp(2.5rem,5vw,5rem)] font-semibold leading-none tracking-[-0.05em]">
+                100+
+              </p>
+
+              <p className="mt-3 text-xs uppercase tracking-[0.18em] text-white/50">
+                Clients & Partners
+              </p>
+            </div>
+
+            <div className="lg:px-8 lg:pr-0">
+              <p className="text-[clamp(2.5rem,5vw,5rem)] font-semibold leading-none tracking-[-0.05em]">
+                GCC
+              </p>
+
+              <p className="mt-3 text-xs uppercase tracking-[0.18em] text-white/50">
+                Regional Focus
+              </p>
+            </div>
+
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
-};
-
-export default About
+}

@@ -1,68 +1,144 @@
-const sectorCards = [
+"use client";
+
+import { ArrowUpRight } from "lucide-react";
+
+const industries = [
   {
-    image: "https://c.animaapp.com/mfvdxb8gInTGFO/img/rectangle-61.svg",
-    title: "Banking &\nReal Estate",
+    number: "01",
+    title: "Banking & Financial Services",
+    description:
+      "Talent solutions for banking, financial institutions, investment and fintech organizations.",
   },
   {
-    image: "https://c.animaapp.com/mfvdxb8gInTGFO/img/rectangle-62.svg",
-    title: "Technology &\nTelecom",
+    number: "02",
+    title: "Technology",
+    description:
+      "Specialized technology talent across digital transformation, software, data, AI and IT.",
   },
   {
-    image: "https://c.animaapp.com/mfvdxb8gInTGFO/img/rectangle-63.svg",
-    title: "Defence &\nManufacturing",
+    number: "03",
+    title: "Engineering & Construction",
+    description:
+      "Workforce solutions for engineering, infrastructure, construction and major projects.",
   },
   {
-    image: "https://c.animaapp.com/mfvdxb8gInTGFO/img/rectangle-64.svg",
-    title: "Construction &\nInfrastructure",
+    number: "04",
+    title: "Healthcare & Life Sciences",
+    description:
+      "Recruitment and workforce solutions supporting healthcare and life sciences organizations.",
   },
   {
-    image: "https://c.animaapp.com/mfvdxb8gInTGFO/img/rectangle-64-1.svg",
-    title: "Retail &\nHospitality",
+    number: "05",
+    title: "Energy & Utilities",
+    description:
+      "Connecting organizations with professionals across energy, utilities and industrial sectors.",
+  },
+  {
+    number: "06",
+    title: "Retail & Consumer",
+    description:
+      "Talent acquisition and workforce support for retail, consumer and commercial organizations.",
   },
 ];
 
-const Card = ({ image, title }) => {
+export default function Sectors() {
   return (
-    <div className="relative w-[400px] h-[373px] shrink-0 rounded-[50px] overflow-hidden">
-      <img
-        className="absolute inset-0 w-full h-full object-cover"
-        alt={title.replace("\n", " ")}
-        src={image}
-      />
-      <div className="absolute inset-0 rounded-[50px] border border-solid border-black bg-[linear-gradient(180deg,rgba(0,0,0,0)_0%,rgba(0,0,0,0.8)_100%)]" />
-      <div className="absolute bottom-7 left-0 right-0 px-6 [font-family:'Aeonik_TRIAL-Bold',Helvetica] font-bold text-white text-2xl text-center tracking-[0] leading-[normal] whitespace-pre-line">
-        {title}
-      </div>
-    </div>
-  );
-};
-
-const Sectors = () => {
-  return (
-    <div
-      className="pt-40 relative"
+    <section
+      id="industries"
+      className="relative overflow-hidden bg-[#07111f] text-white"
     >
-
-      <img
-        className="absolute rotate-180 -top-20 opacity-75 left-0 w-screen"
-        alt="Group"
-        src="/Group.png"
+      {/* SAME BACKGROUND AS SERVICES.JSX */}
+      <div
+        className="absolute inset-0 bg-cover bg-center opacity-20"
+        style={{
+          backgroundImage: "url('/hero-recruitment.jpg')",
+        }}
       />
-      <h2 className="text-6xl bg-gradient-to-r from-[rgb(55,100,255,1)] to-white bg-clip-text font-normal text-transparent text-center">Sectors</h2>
 
-      {/* Marquee container */}
-      <div className="relative mt-20 overflow-hidden px-[100px]">
-        <div className="marquee__track flex gap-5" style={{ '--duration': '30s' }}>
-          {sectorCards.map((item, index) => (
-            <Card key={`a-${index}`} image={item.image} title={item.title} />
-          ))}
-          {sectorCards.map((item, index) => (
-            <Card key={`b-${index}`} image={item.image} title={item.title} />
+      {/* SAME BRAND GRADIENTS AS SERVICES.JSX */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_20%,rgba(0,59,150,0.28),transparent_35%),radial-gradient(circle_at_10%_80%,rgba(158,27,30,0.20),transparent_30%)]" />
+
+      <div className="relative z-10 mx-auto max-w-[1500px] px-6 py-24 sm:px-10 sm:py-32 lg:px-16 lg:py-40">
+
+        {/* Header */}
+        <div className="mb-20 flex flex-col gap-8 lg:mb-28 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p className="mb-6 text-xs font-semibold uppercase tracking-[0.28em] text-white/50">
+              03 — Industries
+            </p>
+
+            <h2 className="max-w-5xl text-[clamp(3rem,7vw,7rem)] font-semibold leading-[0.88] tracking-[-0.055em]">
+              Expertise across
+              <br />
+              <span className="text-white/45">industries.</span>
+            </h2>
+          </div>
+
+          <p className="max-w-sm text-sm leading-6 text-white/50 lg:pb-2">
+            We understand the people, skills and workforce requirements
+            shaping organizations across diverse industries and markets.
+          </p>
+        </div>
+
+        {/* Industries */}
+        <div className="border-t border-white/15">
+          {industries.map((industry) => (
+            <div
+              key={industry.number}
+              className="group border-b border-white/15"
+            >
+              <div className="grid gap-5 py-8 sm:py-10 lg:grid-cols-[100px_1fr_1fr_60px] lg:items-center lg:gap-8 lg:py-12">
+
+                {/* Number */}
+                <span className="text-xs font-medium tracking-[0.2em] text-white/35">
+                  {industry.number}
+                </span>
+
+                {/* Title */}
+                <h3 className="text-2xl font-medium tracking-[-0.02em] transition-transform duration-500 group-hover:translate-x-2 sm:text-3xl lg:text-4xl">
+                  {industry.title}
+                </h3>
+
+                {/* Description */}
+                <p className="max-w-xl text-sm leading-6 text-white/45 transition-colors duration-500 group-hover:text-white/70">
+                  {industry.description}
+                </p>
+
+                {/* Arrow */}
+                <div className="hidden h-12 w-12 items-center justify-center rounded-full border border-white/20 transition-all duration-500 group-hover:border-white group-hover:bg-white group-hover:text-[#07111f] lg:flex">
+                  <ArrowUpRight size={19} />
+                </div>
+
+              </div>
+            </div>
           ))}
         </div>
-      </div>
-    </div>
-  )
-}
 
-export default Sectors
+        {/* Bottom statement */}
+        <div className="mt-20 flex flex-col gap-8 border-t border-white/15 pt-10 lg:mt-28 lg:flex-row lg:items-end lg:justify-between">
+
+          <p className="max-w-3xl text-2xl font-medium leading-9 tracking-[-0.02em] sm:text-3xl lg:text-4xl">
+            Deep industry understanding.
+            <br />
+            <span className="text-white/40">
+              Human expertise where it matters.
+            </span>
+          </p>
+
+          <a
+            href="/contact"
+            className="group inline-flex w-fit items-center gap-3 rounded-full bg-white px-6 py-4 text-sm font-semibold text-[#07111f] transition-all duration-300 hover:bg-[#003b96] hover:text-white"
+          >
+            Discuss your requirements
+
+            <ArrowUpRight
+              size={18}
+              className="transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1"
+            />
+          </a>
+
+        </div>
+      </div>
+    </section>
+  );
+}

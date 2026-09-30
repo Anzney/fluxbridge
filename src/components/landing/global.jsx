@@ -1,139 +1,309 @@
-import React from 'react'
-import { Card, CardContent } from '../ui/card'
+"use client";
+
+import React from "react";
+import { ArrowUpRight, MapPin } from "lucide-react";
+
+const locations = [
+  {
+    city: "Seattle",
+    country: "USA",
+    position: "top-[49%] left-[16%]",
+    showMobile: false,
+  },
+  {
+    city: "Hounslow",
+    country: "UK",
+    position: "top-[43%] left-[46%]",
+    showMobile: true,
+  },
+  {
+    city: "Riyadh",
+    country: "Kingdom of Saudi Arabia",
+    extra: "(HQ)",
+    position: "top-[58%] left-[56%]",
+    showMobile: true,
+    active: true,
+  },
+  {
+    city: "Dubai",
+    country: "UAE",
+    position: "top-[64%] left-[62%]",
+    showMobile: true,
+  },
+  
+  {
+    city: "Mumbai",
+    country: "India",
+    position: "top-[61%] left-[67%]",
+    showMobile: true,
+  },
+];
+
+const offices = [
+  {
+    number: "01",
+    title: "UAE Office",
+    text: "IFZA Property, Freezone Building A1, Dubai Digital Park, Dubai Silicon Oasis, Dubai, UAE.",
+  },
+  {
+    number: "02",
+    title: "Riyadh — Kingdom of Saudi Arabia",
+    text: "Flux Bridge Co 7783, Ibn Katheer St - King Abdulaziz District, Riyadh 12233-4264 Kingdom of Saudi Arabia.",
+    headquarters: true,
+  },
+  {
+    number: "03",
+    title: "India Office",
+    text: "BLDG No: 2, A3 Station, Unit No: 118, opposite RUPA SOLITAIRE, Millenium Business Park, Sector 1, Mahape, Navi Mumbai, Maharashtra 400701.",
+  },
+];
 
 const GlobalPresence = () => {
   return (
-    <div className="relative flex items-center justify-center h-full mb-10 px-4 sm:px-6 md:px-8">
-      <Card className="relative w-full max-w-[1350px] bg-[#ffffff0d] rounded-3xl md:rounded-[50px] backdrop-blur-[25px] border-none overflow-hidden">
-        <CardContent className="p-0">
-          {/* Map Section with overlaid header */}
-          <div className="relative w-full pt-20 md:pt-28 lg:pt-32 pb-16 md:pb-20 lg:pb-45">
-            {/* Overlaid header */}
-            <div className="absolute top-2 left-5 md:left-8 lg:left-10  right-5 md:right-8 lg:right-10 z-10 flex items-center justify-between gap-3">
-              <h2 className="bg-[linear-gradient(127deg,rgba(55,100,255,1)_0%,rgba(255,255,255,1)_100%)] bg-clip-text text-transparent font-normal leading-tight lg:leading-[1.1] text-3xl sm:text-4xl md:text-[42px] lg:text-[56px] md:whitespace-nowrap">
+    <section
+      id="global"
+      className="relative overflow-hidden bg-[#07111f] text-white"
+    >
+      {/* Background atmosphere */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute left-[5%] top-[15%] h-[400px] w-[400px] rounded-full bg-[#003b96]/10 blur-[160px]" />
+        <div className="absolute right-[0%] top-[45%] h-[500px] w-[500px] rounded-full bg-[#9e1b1e]/10 blur-[180px]" />
+        <div className="absolute bottom-[-200px] left-1/2 h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-[#003b96]/10 blur-[180px]" />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-[1500px] px-6 py-24 sm:px-10 sm:py-32 lg:px-16 lg:py-40">
+
+        {/* HEADER */}
+        <div className="mb-14 border-t border-white/10 pt-8 lg:mb-20">
+          <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+            
+            <div>
+              <p className="mb-6 text-xs font-semibold uppercase tracking-[0.28em] text-white/35">
+                10 — Global Presence
+              </p>
+
+              <h2 className="max-w-5xl text-[clamp(3.5rem,8vw,8rem)] font-semibold leading-[0.84] tracking-[-0.06em]">
                 Our Global
-                <br className="sm:block md:hidden" />
-                <span className="md:hidden">Presence</span>
-                <span className="hidden md:inline md:ml-4 lg:ml-6">Presence</span>
+                <br />
+                <span className="text-white/35">Presence.</span>
               </h2>
+            </div>
+
+            <div className="flex flex-col items-start gap-5 lg:items-end">
+              <p className="max-w-sm text-sm leading-6 text-white/45 lg:text-right">
+                Connecting businesses and talent across strategic markets,
+                with a strong presence across the GCC, India and international
+                locations.
+              </p>
+
               <img
-                className="h-10 sm:h-12 md:h-14 lg:h-16 w-auto shrink-0"
+                className="h-12 w-auto opacity-80 sm:h-14 lg:h-16"
                 alt="Vision 2030"
                 src="https://c.animaapp.com/mfvdxb8gInTGFO/img/mask-group-5.png"
               />
             </div>
-            {/* Background map image */}
+
+          </div>
+        </div>
+
+        {/* MAP AREA */}
+        <div className="relative overflow-hidden rounded-[32px] border border-white/10 bg-white/[0.025] lg:rounded-[48px]">
+
+          {/* Map header */}
+          <div className="relative z-20 flex items-center justify-between border-b border-white/10 px-6 py-5 sm:px-8 lg:px-10">
+            <div>
+              <p className="text-[10px] uppercase tracking-[0.25em] text-white/30">
+                Worldwide Network
+              </p>
+              <p className="mt-2 text-sm text-white/60">
+                Strategic locations. Global reach.
+              </p>
+            </div>
+
+            <div className="hidden items-center gap-2 sm:flex">
+              <span className="h-2 w-2 rounded-full bg-[#3764ff] shadow-[0_0_12px_rgba(55,100,255,0.8)]" />
+              <span className="text-[10px] uppercase tracking-[0.2em] text-white/30">
+                Active Locations
+              </span>
+            </div>
+          </div>
+
+          {/* Map */}
+          <div className="relative min-h-[500px] sm:min-h-[600px] lg:min-h-[700px]">
+
+            {/* Map glow */}
+            <div className="pointer-events-none absolute left-1/2 top-1/2 h-[300px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#003b96]/15 blur-[100px]" />
+
             <img
-              className="w-full h-auto px-5 lg:px-10"
+              className="absolute left-1/2 top-1/2 w-[105%] max-w-none -translate-x-1/2 -translate-y-1/2 opacity-55 sm:w-[100%] lg:w-[92%]"
               alt="Global Map"
               src="https://c.animaapp.com/mfvdxb8gInTGFO/img/group-17.png"
             />
 
-            {/* Location markers and labels */}
-            <div className="absolute inset-0 pt-20 md:pt-28 lg:pt-32">
-              {/* Seattle */}
-              <div className="absolute top-[42%] left-[15%] hidden md:flex flex-col items-center gap-1">
-                <img
-                  className="w-6 h-6 md:w-8 md:h-8"
-                  alt="Location Pin"
-                  src="https://c.animaapp.com/mfvdxb8gInTGFO/img/vector.svg"
-                />
-                <div className="text-white text-xs font-bold text-center whitespace-nowrap">
-                  Seattle<br/>USA
-                </div>
-              </div>
+            {/* Location markers */}
+            {locations.map((location) => (
+              <div
+                key={`${location.city}-${location.country}`}
+                className={`absolute ${location.position} ${
+                  location.showMobile ? "flex" : "hidden md:flex"
+                } z-10 -translate-x-1/2 -translate-y-1/2 flex-col items-center`}
+              >
+                {/* marker */}
+                <div className="relative">
+                  {location.active && (
+                    <span className="absolute left-1/2 top-1/2 h-10 w-10 -translate-x-1/2 -translate-y-1/2 animate-ping rounded-full bg-[#3764ff]/20" />
+                  )}
 
-              {/* Hounslow, UK */}
-              <div className="absolute top-[40%] left-[44%] flex flex-col items-center gap-1">
-                <img
-                  className="w-6 h-6 md:w-8 md:h-8"
-                  alt="Location Pin"
-                  src="https://c.animaapp.com/mfvdxb8gInTGFO/img/vector.svg"
-                />
-                <div className="text-white text-[10px] sm:text-xs md:text-sm font-bold text-center whitespace-nowrap">
-                  Hounslow<br/>UK
+                  <div
+                    className={`relative flex h-7 w-7 items-center justify-center rounded-full border ${
+                      location.active
+                        ? "border-[#6f8dff] bg-[#3764ff] shadow-[0_0_25px_rgba(55,100,255,0.7)]"
+                        : "border-white/40 bg-[#07111f]/80"
+                    }`}
+                  >
+                    <MapPin
+                      size={13}
+                      className={
+                        location.active ? "text-white" : "text-white/60"
+                      }
+                    />
+                  </div>
                 </div>
-              </div>
 
-              {/* Riyadh, KSA (HQ) */}
-              <div className="absolute top-[53%] left-[54%] flex flex-col items-center gap-1">
-                <img
-                  className="w-6 h-6 md:w-8 md:h-8"
-                  alt="Location Pin"
-                  src="https://c.animaapp.com/mfvdxb8gInTGFO/img/vector.svg"
-                />
-                <div className="text-white text-[10px] sm:text-xs md:text-sm font-bold text-center whitespace-nowrap mt-7 ml-[-1px]">
-                  Riyadh, Kingdom of<br/>Saudia Arabia (HQ)
-                </div>
-              </div>
+                {/* label */}
+                <div
+                  className={`mt-2 rounded-full border px-3 py-1.5 text-center backdrop-blur-md ${
+                    location.active
+                      ? "border-[#3764ff]/40 bg-[#3764ff]/15"
+                      : "border-white/10 bg-[#07111f]/60"
+                  }`}
+                >
+                  <p className="whitespace-nowrap text-[10px] font-semibold uppercase tracking-[0.12em] text-white sm:text-xs">
+                    {location.city}
+                  </p>
 
-              {/* Dubai, UAE */}
-              <div className="absolute top-[52%] left-[59%] hidden sm:flex flex-col-reverse items-center gap-1">
-                <img
-                  className="w-1 h-3 md:w-8 md:h-8"
-                  alt="Location Pin"
-                  src="https://c.animaapp.com/mfvdxb8gInTGFO/img/vector.svg"
-                />
-                <div className="text-white text-[10px] sm:text-xs md:text-sm font-bold text-center whitespace-nowrap">
-                  Dubai, UAE
+                  <p className="whitespace-nowrap text-[9px] text-white/40 sm:text-[10px]">
+                    {location.country}{" "}
+                    {location.extra && (
+                      <span className="text-[#6f8dff]">{location.extra}</span>
+                    )}
+                  </p>
                 </div>
               </div>
+            ))}
 
-              {/* Oman */}
-              <div className="absolute top-[53%] left-[61%] hidden sm:flex flex-col items-center gap-1">
-                <img
-                  className="w-6 h-6 md:w-8 md:h-8"
-                  alt="Location Pin"
-                  src="https://c.animaapp.com/mfvdxb8gInTGFO/img/vector.svg"
-                />
-                <div className="text-white text-[10px] sm:text-xs md:text-sm font-bold text-center whitespace-nowrap">
-                  Oman
-                </div>
-              </div>
-
-              {/* Mumbai, India */}
-              <div className="absolute top-[54.1%] left-[65.3%] hidden sm:flex flex-col items-center gap-1">
-                <img
-                  className="w-6 h-6 md:w-8 md:h-8"
-                  alt="Location Pin"
-                  src="https://c.animaapp.com/mfvdxb8gInTGFO/img/vector.svg"
-                />
-                <div className="text-white text-[5px] sm:text-xs md:text-sm font-bold text-center whitespace-nowrap">
-                  Mumbai<br/>India
-                </div>
-              </div>
+            {/* Center caption */}
+            <div className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-center sm:bottom-10">
+              <p className="text-[9px] uppercase tracking-[0.3em] text-white/25">
+                Connecting Talent
+              </p>
+              <p className="mt-2 text-xs text-white/40">
+                Across borders. Across industries.
+              </p>
             </div>
           </div>
-        </CardContent>
-
-        {/* Address section */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 items-stretch gap-4 md:gap-5 px-4 md:px-8 lg:px-10 mt-4 md:mt-6 lg:mt-0 pb-6 lg:absolute lg:left-10 lg:bottom-10 lg:right-10">
-          {[
-            {
-              title: 'UAE Address',
-              text: 'IFZA Property, Freezone Building A1, Dubai Digital Park, Dubai Silicon Oasis, Dubai, UAE.',
-            },
-            {
-              title: 'Riyadh - Kingdom of Saudi Arabia (HQ)',
-              text: 'Flux Bridge Co 7783, Ibn Katheer St - King Abdulaziz District, Riyadh 12233-4264 Kingdom of Saudi Arabia',
-            },
-            {
-              title: 'India',
-              text: 'BLDG No: 2, A3 Station, Unit No: 118, opposite RUPA SOLITAIRE, Millenium Business Park, Sector 1, Mahape, Navi Mumbai, Maharashtra 400701.',
-            },
-          ].map((item, i) => (
-            <div
-              key={i}
-              className="p-4 sm:p-6 md:p-6 lg:p-8 rounded-2xl backdrop-blur-xl bg-white/10 ring-1 ring-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.35)] lg:bg-[#d9d9d9]/5 lg:ring-0 lg:shadow-none h-full"
-            >
-              <p className="text-white font-semibold text-base sm:text-lg">{item.title}</p>
-              <p className="text-white/80 text-xs sm:text-sm leading-relaxed mt-1.5">{item.text}</p>
-            </div>
-          ))}
         </div>
-      </Card>
-    </div>
-  )
-}
 
-export default GlobalPresence
+        {/* OFFICE LOCATIONS */}
+        <div className="mt-16 lg:mt-24">
+          <div className="mb-8 flex items-end justify-between border-t border-white/10 pt-8">
+            <div>
+              <p className="text-xs uppercase tracking-[0.25em] text-white/30">
+                Our Offices
+              </p>
+
+              <h3 className="mt-3 text-3xl font-medium tracking-[-0.04em] sm:text-4xl lg:text-5xl">
+                Where we are.
+              </h3>
+            </div>
+
+            <span className="hidden text-xs uppercase tracking-[0.2em] text-white/20 sm:block">
+              03 Locations
+            </span>
+          </div>
+
+          <div className="grid gap-4 lg:grid-cols-3">
+            {offices.map((office) => (
+              <div
+                key={office.number}
+                className={`group relative overflow-hidden rounded-[28px] border p-7 transition-all duration-500 lg:p-8 ${
+                  office.headquarters
+                    ? "border-[#3764ff]/30 bg-[#003b96]/10"
+                    : "border-white/10 bg-white/[0.035] hover:border-white/20 hover:bg-white/[0.06]"
+                }`}
+              >
+                {/* Number */}
+                <div className="flex items-start justify-between">
+                  <span className="text-xs tracking-[0.2em] text-white/25">
+                    {office.number}
+                  </span>
+
+                  {office.headquarters && (
+                    <span className="rounded-full border border-[#3764ff]/30 bg-[#3764ff]/10 px-3 py-1 text-[9px] uppercase tracking-[0.18em] text-[#8fa5ff]">
+                      Headquarters
+                    </span>
+                  )}
+                </div>
+
+                <h4 className="mt-12 max-w-sm text-xl font-medium leading-tight tracking-[-0.025em] sm:text-2xl">
+                  {office.title}
+                </h4>
+
+                <p className="mt-5 text-sm leading-6 text-white/45">
+                  {office.text}
+                </p>
+
+                <div className="mt-10 flex items-center gap-2 text-xs uppercase tracking-[0.15em] text-white/25 transition-colors group-hover:text-white/60">
+                  <span>View location</span>
+                  <ArrowUpRight
+                    size={15}
+                    className="transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1"
+                  />
+                </div>
+
+                {/* decorative glow */}
+                <div className="pointer-events-none absolute -bottom-20 -right-20 h-40 w-40 rounded-full bg-[#003b96]/20 blur-[70px] transition-all duration-500 group-hover:bg-[#3764ff]/20" />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* BOTTOM STATEMENT */}
+        <div className="mt-20 border-t border-white/10 pt-10 lg:mt-28">
+          <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+
+            <div>
+              <p className="text-xs uppercase tracking-[0.2em] text-white/30">
+                Global by nature
+              </p>
+
+              <p className="mt-4 max-w-4xl text-2xl font-medium leading-tight tracking-[-0.03em] sm:text-3xl lg:text-4xl">
+                Local expertise.
+                <br />
+                <span className="text-white/40">
+                  International perspective.
+                </span>
+              </p>
+            </div>
+
+            <a
+              href="/contact"
+              className="group inline-flex w-fit items-center gap-3 rounded-full bg-white px-6 py-4 text-sm font-semibold text-[#07111f] transition-all duration-300 hover:bg-[#003b96] hover:text-white"
+            >
+              Connect with us
+
+              <ArrowUpRight
+                size={18}
+                className="transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1"
+              />
+            </a>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
+};
+
+export default GlobalPresence;
